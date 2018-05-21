@@ -1,0 +1,355 @@
+<div class="" *ngIf="isShowSuccess">
+    <div class="">
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="isSuccess=!saveSuccess">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span class="alert-text hidden-sm-down">User updated successfully</span>
+            <span class="alert-text alert-text-mb hidden-md-up">User updated successfully.</span>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-10  push-md-1 margin-top padding-top-bottom  bg-software-gray-1">
+    <h4>Existing Users</h4>
+    <!-- <label> Edit existing users to the subscription by searching below</label> -->
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <label for='userProfile'>User Profile</label>
+            <select id='userProfile' class="form-control">
+                <option value="admin">Admin</option>
+                <option value="sme">Subject Matter Expert</option>
+                <option value="sub">Subscriber</option>
+            </select>
+        </div>
+        <div class="col-md-3 form-group">
+            <label for='searchUsers'>Search Users</label>
+            <input id='searchUsers' [ngModel]='searchUserName' type="text" class="form-control" placeholder="User Display Name or Email"
+            />
+        </div>
+        <div class="col-md-3 form-group">
+            <label for='userType'>User Type</label>
+            <select id='userType' class="form-control">
+                <option value="internal">Internal</option>
+                <option value="external">External</option>
+                <option value="all">All</option>
+            </select>
+        </div>
+        <div class="col-md-3 form-group">
+            <button type="button" class="btn btn-primary btn-desktop-margin float-xs-left hidden-sm-down" name="searchUserButton" (click)="searchUser()">Search</button>
+            <button type="button" class="btn btn-secondary btn-desktop-margin float-xs-left hidden-sm-down" name="resetUserButton" (click)="reset()">Reset</button>
+            <button type="button" class="btn btn-primary btn-block hidden-md-up margin-top" name="searchUserButton" (click)="searchUser()">Search</button>
+            <button type="button" class="btn btn-secondary btn-block hidden-md-up margin-top" name="resetUserButton" (click)="reset()">Reset</button>
+        </div>
+    </div>
+</div>
+<div class="col-md-10  push-md-1 margin-top padding-top-bottom">
+    <div class="row" *ngIf='searchUserResult'>
+        <div class="col-md-12 col-sm-12 margin-top">
+            <div class="table-responsive table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="20%">Display Name</th>
+                            <th width="30%">Email</th>
+                            <th width="15%">User Profile</th>
+                            <th width="15%">User Type</th>
+                            <th width="10%">Active</th>
+                            <th width="5%"></th>
+                            <th width="5%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>User's Display Name</td>
+
+                            <td>
+                                first.last@willistowerswatson.com
+                            </td>
+                            <td>
+                                Subscriber
+                            </td>
+                            <td>
+                                Internal </td>
+                            <td>
+                                <!-- <a>
+                                    <img class='img-responsive' height="30px" src="./assets/images/Disabled_on.svg" alt="">
+                                </a> -->
+                                <app-switch></app-switch>
+                            </td>
+                            <td>
+                                <a data-toggle="modal" data-target=".edit-user">
+                                    <img class='img-responsive' height="25px" src="./assets/images/icons8-edit.svg" alt="">
+                                </a>
+                            </td>
+                            <td>
+                                <a>
+                                    <img class='img-responsive' height="25px" src="./assets/images/icons8-trash.svg" alt="">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>User's Display Name</td>
+
+                            <td>
+                                first.last@willistowerswatson.com
+                            </td>
+                            <td>
+                                Admin
+                            </td>
+                            <td>
+                                Internal </td>
+                            <td>
+                                <!-- <a>
+                                    <img class='img-responsive' height="30px" src="./assets/images/Disabled_on.svg" alt="">
+                                </a> -->
+                                <app-switch></app-switch>
+                            </td>
+                            <td>
+                                <a data-toggle="modal" data-target=".edit-user">
+                                    <img class='img-responsive' height="25px" src="./assets/images/icons8-edit.svg" alt="">
+                                </a>
+                            </td>
+                            <td>
+                                <a>
+                                    <img class='img-responsive' height="25px" src="./assets/images/icons8-trash.svg" alt="">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>User's Display Name</td>
+
+                            <td>
+                                first.last@willistowerswatson.com
+                            </td>
+                            <td>
+                                Subject Matter Expert
+                            </td>
+                            <td>
+                                External </td>
+                            <td>
+                                <!-- <a>
+                                    <img class='img-responsive' height="30px" src="./assets/images/Disabled_on.svg" alt="">
+                                </a> -->
+                                <app-switch></app-switch>
+                            </td>
+                            <td>
+                                <a data-toggle="modal" data-target=".edit-user">
+                                    <img class='img-responsive' height="25px" src="./assets/images/icons8-edit.svg" alt="">
+                                </a>
+                            </td>
+                            <td>
+                                <a>
+                                    <img class='img-responsive' height="25px" src="./assets/images/icons8-trash.svg" alt="">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>User's Display Name</td>
+
+                            <td>
+                                first.last@willistowerswatson.com
+                            </td>
+                            <td>
+                                Subscriber
+                            </td>
+                            <td>
+                                Internal </td>
+                            <td>
+                                <!-- <a>
+                                    <img class='img-responsive' height="30px" src="./assets/images/Disabled_on.svg" alt="">
+                                </a> -->
+                                <app-switch></app-switch>
+                            </td>
+                            <td>
+                                <a data-toggle="modal" data-target=".edit-user">
+                                    <img class='img-responsive' height="25px" src="./assets/images/icons8-edit.svg" alt="">
+                                </a>
+                            </td>
+                            <td>
+                                <a>
+                                    <img class='img-responsive' height="25px" src="./assets/images/icons8-trash.svg" alt="">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Edit User-->
+<div class="modal fade edit-user" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arialabel="Close">
+                    <span ariahidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Edit User</h4>
+            </div>
+            <div class="modal-body hidden-sm-down">
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-3 col-sm-3">
+                        <label>User Profile</label>
+                    </div>
+                    <div class="col-md-5 col-sm-5">
+                        <select class="form-control">
+                            <option value="admin">Admin</option>
+                            <option value="sme">Subject Matter Expert</option>
+                            <option value="sub">Subscriber</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-sm-4"></div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-5 col-sm-5">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4 modal-label">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-9 col-sm-8 modal-data">
+                                Search Display Name
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 modal-label">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 modal-data">
+                                john.davis@willistowerswatson.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-5 col-sm-5">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4 modal-label">
+                                <label>City</label>
+                            </div>
+                            <div class="col-md-9 col-sm-8 modal-data">
+                                Search City
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 modal-label">
+                                <label>Country</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 modal-data">
+                                United Kingdom
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-8 col-sm-8">
+                        <label class="radio-inline" style="margin-right:15px">
+                            <input style="margin-right:5px" type="radio" name="optradio1" checked="true">Internal User</label>
+                        <label class="radio-inline">
+                            <input style="margin-right:5px" type="radio" name="optradio1">External User</label>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    </div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-3 col-sm-3">
+                        Is Active
+                    </div>
+                    <div class="col-md-11 col-sm-9 switch-width">
+                        <!-- <a style='margin-left:15px' *ngIf='isClientActive' (click)='isClientActive=!isClientActive'>
+                            <img class='img-responsive' height="30px" src="./assets/images/Default_on.svg" alt="">
+                        </a>
+                        <a style='margin-left:15px' *ngIf='!isClientActive' (click)='isClientActive=!isClientActive'>
+                            <img class='img-responsive' height="30px" src="./assets/images/Off.svg" alt="">
+                        </a> -->
+                        <app-switch></app-switch>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body hidden-md-up">
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-3 col-sm-3">
+                        <label class="th-new label-mob">User Profile</label>
+                    </div>
+                    <div class="row col-md-5 col-sm-5">
+                        <select class="form-control">
+                            <option value="admin">Admin</option>
+                            <option value="sme">Subject Matter Expert</option>
+                            <option value="sub">Subscriber</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-sm-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 modal-form-margin-top">
+                        <div class="table-responsive table-container">
+                            <table class="table table-modal">
+                                <tbody>
+                                    <tr>
+                                        <th class="th-new">Name</th>
+                                        <td class="td-new">Search Display Name</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="th-new">Email</th>
+                                        <td class="td-new">john.davis@willistowerswatson.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="th-new">City</th>
+                                        <td class="td-new">Search City</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="th-new">Country</th>
+                                        <td class="td-new">United Kingdom</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="padding-modal">
+                        <div class="col-md-8 col-sm-8">
+                            <label class="radio-inline" style="margin-right:15px">
+                                <input style="margin-right:5px" type="radio" name="optradio" checked="true">Internal User</label>
+                            <label class="radio-inline">
+                                <input style="margin-right:5px" type="radio" name="optradio">External User</label>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="padding-modal">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            Is Active
+                        </div>
+                        <div class="col-md-11 col-sm-9 col-xs-9 switch-width">
+                            <!-- <a style='margin-left:15px' *ngIf='isClientActive' (click)='isClientActive=!isClientActive'>
+                                <img class='img-responsive' height="30px" src="./assets/images/Default_on.svg" alt="">
+                            </a>
+                            <a style='margin-left:15px' *ngIf='!isClientActive' (click)='isClientActive=!isClientActive'>
+                                <img class='img-responsive' height="30px" src="./assets/images/Off.svg" alt="">
+                            </a> -->
+                            <app-switch></app-switch>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer hidden-sm-down">
+                <button type="button" class="btn btn-secondary margin-set-right" data-dismiss="modal" name="cancelUserButton">Cancel</button>
+                <button type="button" class="btn btn-primary margin-set-left" (click)="saveUserDetails()" data-dismiss="modal" name="saveUserButton">Save</button>
+            </div>
+            <div class="modal-footer hidden-md-up">
+                <button type="button" class="btn btn-primary btn-block" (click)="saveUserDetails()" data-dismiss="modal" name="saveUserButton">Save</button>
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" name="cancelUserButton">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+</div>

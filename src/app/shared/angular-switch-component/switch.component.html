@@ -1,0 +1,22 @@
+<div class="switch-container">
+    <div class="switch">
+        <span class="switch-label" (click)="switch.click()">
+            {{ on }}
+        </span>
+        <span class="switch-label" (click)="switch.click()">
+            {{ off }}          
+        </span>
+        <input class="switch-check"
+            [disabled]="disabled"
+            [checked]="checked"
+            type="checkbox" 
+            [id]="id" 
+            #switch
+            (change)="checkedChange.emit(switch.checked)"
+            />
+
+        <label class="switch-check-label" [for]="id">
+
+        </label>
+    </div>
+</div>

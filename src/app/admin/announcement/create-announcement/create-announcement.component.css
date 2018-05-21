@@ -1,0 +1,12 @@
+.table th, .table td {
+    border-top: 0px solid #eceeef;
+}
+.margin-set-left{
+    margin-left: 6px;
+}
+.margin-set-right{
+    margin-right: 6px;
+}
+.btn-mob-margin{
+    margin-top: 20px;
+}

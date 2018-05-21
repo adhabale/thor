@@ -1,0 +1,333 @@
+<div class="" *ngIf="isShowSuccess">
+    <div class="">
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="isSuccess=!saveSuccess">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span class="alert-text hidden-sm-down">User John Davis successfully added.</span>
+            <span class="alert-text alert-text-mb hidden-md-up">User John Davis successfully added.</span>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-10  push-md-1 margin-top padding-top-bottom  bg-software-gray-1">
+    <h4>Add Users</h4>
+    <label> Add new users to the subscription by searching below</label>
+    <div class="row">
+        <div class="col-md-4 col-sm-12 form-group">
+            <label for='userProfile'>User Profile</label>
+            <select class="form-control">
+                <option value="admin">Admin</option>
+                <option value="sme">Subject Matter Expert</option>
+                <option value="sub">Subscriber</option>
+            </select>
+        </div>
+        <div class="col-md-4 col-sm-12 form-group">
+            <label for='searchUsers'>Search Users</label>
+            <input id='searchUsers' [ngModel]='searchUserName' type="text" class="form-control" placeholder="User Display Name or Email"
+            />
+        </div>
+        <div class="col-md-4 col-sm-12 form-group">
+            <button type="button" class="btn btn-primary float-xs-left btn-desktop-margin hidden-sm-down" name="searchUserButton" (click)="searchUser()">Search</button>
+            <button type="button" class="btn btn-secondary btn-desktop-margin float-xs-left hidden-sm-down" name="resetUserButton" (click)="reset()">Reset</button>
+            <button type="button" class="btn btn-primary btn-block hidden-md-up margin-top" name="searchUserButton" (click)="searchUser()">Search</button>
+            <button type="button" class="btn btn-secondary btn-block hidden-md-up margin-top" name="resetUserButton" (click)="reset()">Reset</button>
+        </div>
+    </div>
+</div>
+<div class="col-md-10  push-md-1 margin-top padding-top-bottom">
+    <div class="row" *ngIf='searchUserResult'>
+        <div class="col-md-12 col-sm-12 margin-top">
+            <div class="table-responsive table-container">
+                <table class="table acc">
+                    <thead>
+                        <tr>
+                            <th width="25%">Display Name</th>
+                            <th width="45%">Email</th>
+                            <th width="15%"></th>
+                            <th width="15%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>User's Display Name</td>
+
+                            <td>
+                                first.last@willistowerswatson.com
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".add-user" name="addUserButton">Add User</button>
+                            </td>
+                            <td>
+                                <a data-toggle="collapse" data-target="#accordion1" class="expandLink clickable" (click)='openTableAccordion1()'>{{expandLinkName1}}
+                                    <span class='caret'></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class='hiddenRow' colspan="4">
+                                <div id="accordion1" class=" table-responsive table-container collapse">
+                                    <table class="table acc-open">
+                                        <tbody>
+                                            <tr>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Company</th>
+                                                <th></th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>first</td>
+                                                <td>Last</td>
+
+                                                <td>Company Name</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>User's Display Name</td>
+
+                            <td>
+                                first.last@willistowerswatson.com
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".add-user" name="addUserButton">Add User</button>
+                            </td>
+                            <td>
+                                <a data-toggle="collapse" data-target="#accordion2" class="expandLink clickable" (click)='openTableAccordion2()'>{{expandLinkName2}}
+                                    <span class='caret'></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class='hiddenRow' colspan="4">
+                                <div id="accordion2" class="table-responsive table-container collapse">
+                                    <table class="table acc-open">
+                                        <tbody>
+                                            <tr>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Company</th>
+                                                <th></th>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>first</td>
+                                                <td>Last</td>
+
+                                                <td>Company Name</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--<div class="hidden-md-up" *ngIf="showAddClientSubBtn">
+    <div>
+        <button type="button" class="btn btn-primary btn-block addBtn" name="addSubButton">Activate Client Subscription</button>
+    </div>
+</div>
+<div class="hidden-sm-down" *ngIf="showAddClientSubBtn">
+    <div>
+        <button type="button" class="btn btn-primary float-xs-right addBtn" name="addSubButton">Activate Client Subscription</button>
+    </div>
+</div>-->
+<!--Modal Add User-->
+<div class="modal fade add-user" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arialabel="Close">
+                    <span ariahidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Add User</h4>
+            </div>
+            <div class="modal-body hidden-sm-down">
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-3 col-sm-3">
+                        <label>User Profile</label>
+                    </div>
+                    <div class="col-md-5 col-sm-5">
+                        <select class="form-control">
+                            <option value="admin">Admin</option>
+                            <option value="sme">Subject Matter Expert</option>
+                            <option value="sub">Subscriber</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-sm-4"></div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-5 col-sm-5">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4 modal-label">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-9 col-sm-8 modal-data">
+                                Search Display Name
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 modal-label">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 modal-data">
+                                john.davis@willistowerswatson.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-5 col-sm-5">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4 modal-label">
+                                <label>City</label>
+                            </div>
+                            <div class="col-md-9 col-sm-8 modal-data">
+                                Search City
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 modal-label">
+                                <label>Country</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 modal-data">
+                                United Kingdom
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-8 col-sm-8">
+                        <label class="radio-inline" style="margin-right:15px">
+                            <input style="margin-right:5px" type="radio" name="optradio" checked="true">Internal User</label>
+                        <label class="radio-inline">
+                            <input style="margin-right:5px" type="radio" name="optradio">External User</label>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                    </div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-3 col-sm-3">
+                        Is Active
+                    </div>
+                    <div class="col-md-11 col-sm-9 switch-width">
+                        <!-- <a style='margin-left:15px' *ngIf='isClientActive' (click)='isClientActive=!isClientActive'>
+                            <img class='img-responsive' height="30px" src="./assets/images/Default_on.svg" alt="">
+                        </a>
+                        <a style='margin-left:15px' *ngIf='!isClientActive' (click)='isClientActive=!isClientActive'>
+                            <img class='img-responsive' height="30px" src="./assets/images/Off.svg" alt="">
+                        </a> -->
+                        <app-switch></app-switch>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body hidden-md-up">
+                <div class="row modal-form-margin-top">
+                    <div class="col-md-3 col-sm-3">
+                        <label class="th-new label-mob">User Profile</label>
+                    </div>
+                    <div class="row col-md-5 col-sm-5">
+                        <select class="form-control">
+                            <option value="admin">Admin</option>
+                            <option value="sme">Subject Matter Expert</option>
+                            <option value="sub">Subscriber</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-sm-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 modal-form-margin-top">
+                        <div class="table-responsive table-container">
+                            <table class="table table-modal">
+                                <tbody>
+                                    <tr>
+                                        <th class="th-new">Name</th>
+                                        <td class="td-new">Search Display Name</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="th-new">Email</th>
+                                        <td class="td-new">john.davis@willistowerswatson.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="th-new">City</th>
+                                        <td class="td-new">Search City</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="th-new">Country</th>
+                                        <td class="td-new">United Kingdom</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="padding-modal">
+                        <div class="col-md-8 col-sm-8">
+                            <label class="radio-inline" style="margin-right:15px">
+                                <input style="margin-right:5px" type="radio" name="optradio2" class="th-new" checked="true">Internal User</label>
+                            <label class="radio-inline">
+                                <input style="margin-right:5px" type="radio" name="optradio2" class="th-new">External User</label>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="row modal-form-margin-top">
+                    <div class="padding-modal">
+                        <div class="col-md-3 col-sm-3 col-xs-2">
+                            Is Active
+                        </div>
+                        <div class="col-md-11 col-sm-9 col-xs-10 switch-width">
+                                <app-switch></app-switch>
+                            <!-- <a style='margin-left:15px' *ngIf='isClientActive' (click)='isClientActive=!isClientActive'>
+                                <img class='img-responsive' height="30px" src="./assets/images/Default_on.svg" alt="">
+                            </a>
+                            <a style='margin-left:15px' *ngIf='!isClientActive' (click)='isClientActive=!isClientActive'>
+                                <img class='img-responsive' height="30px" src="./assets/images/Off.svg" alt="">
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer hidden-sm-down" *ngIf="!isAddViewOn">
+                <button type="button" class="btn btn-secondary margin-set-right" data-dismiss="modal" name="cancelUserButton">Cancel</button>
+                <button type="button" class="btn btn-primary margin-set-left" (click)="saveUserDetails()" data-dismiss="modal" name="saveUserButton">Save</button>
+            </div>
+            <div class="modal-footer hidden-md-up" *ngIf="!isAddViewOn">
+                <button type="button" class="btn btn-primary btn-block" (click)="saveUserDetails()" data-dismiss="modal" name="saveUserButton">Save</button>
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" name="cancelUserButton">Cancel</button>
+
+            </div>
+            <div class="modal-footer hidden-sm-down" *ngIf="isAddViewOn">
+                <button type="button" class="btn btn-secondary margin-set-right" data-dismiss="modal" name="cancelUserButton">Cancel</button>
+                <button type="button" class="btn btn-primary margin-set-left" (click)="saveUserDetails()" data-dismiss="modal" name="saveUserButton">Save</button>
+            </div>
+            <div class="modal-footer hidden-md-up" *ngIf="isAddViewOn">
+                <button type="button" class="btn btn-primary btn-block" (click)="saveUserDetails()" data-dismiss="modal" name="saveUserButton">Save</button>
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" name="cancelUserButton">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+</div>

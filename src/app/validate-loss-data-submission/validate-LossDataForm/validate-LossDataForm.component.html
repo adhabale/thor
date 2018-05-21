@@ -1,0 +1,1166 @@
+<div id="upstreamLossSubmittedForm">
+    <div class="position-padding">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well-report well-border well-mob">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 well-col">
+                            <h6 class="extra-padding-top">Submission ID</h6>
+                            <h3>{{subscriptionId}}</h3>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 well-col">
+                            <h6 class="extra-padding-top">Type of Loss Data</h6>
+                            <h3>{{selectedLossType}}</h3>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 well-col">
+                            <h6 class="extra-padding-top extra-adding-left">Status</h6>
+                            <span class="tag tag-pill tag-info" *ngIf="subscriptionStatus == 'Submitted'">
+                                <h4>{{subscriptionStatus}}</h4>
+                            </span>
+                            <span class="tag tag-pill tag-warning" *ngIf="subscriptionStatus == 'On-Hold'">
+                                <h4>{{subscriptionStatus}}</h4>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="basic-details-accordian" class="accordion position-padding" role="tablist" ariamultiselectable="true">
+        <div class="card">
+            <a id="basic" class="card-header collapse-in" role="tab" data-toggle="collapse" data-parent="#basic-details-accordian" href="#basicDetails"
+                aria-expanded="false" aria-controls="basicDetails">
+                Basic Details
+                <span class="accordion-icon"></span>
+            </a>
+            <div id="basicDetails" class="collapse-in" role="tabpanel" arialabelledby="basic">
+                <div class="card-block">
+                    <div class="div-border">
+                        <div class="margin-top">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="46%">Loss Date: &nbsp; &nbsp; &nbsp;Day
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].day" value="{{cat.id}}" [selected]="option === selectedOption">{{cat}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr class="hidden-md-up">
+                                                    <th>Loss Month
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].month" value="{{cat.id}}" [selected]="option === selectedOption">{{cat}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr class="hidden-md-up">
+                                                    <th>Loss Year
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].year" value="{{cat.id}}" [selected]="option === selectedOption">{{cat}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Category 1
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].category1" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Land / Offshore
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].landOffshore" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Operational Status
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].OperationalStatus" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Assured & co-venturers
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='assured' type="text" class="form-control" value="SBM" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Loss Location
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='location' type="text" class="form-control" value="Campos Basin" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Area
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option>South America</option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].area" value="{{cat.id}}" [selected]="option === selectedOption"> {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Adjuster
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='adjuster' type="text" class="form-control" value="Mathews Daniel" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="46%">Month
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].month" value="{{cat.id}}" [selected]="option === selectedOption">{{cat}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Category 2
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].category2" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>CTL/TL
+                                                        <span style='color:red;'> *</span>
+                                                        <span style='color:white;'>Extra space </span>
+                                                        <span style='color:white;' class="hidden-md-up">Extr</span>
+                                                    </th>
+                                                    <td>
+                                                        <input class="form-control shift-checkbox" type="checkbox" checked>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Loss Details
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <textarea rows="4" class="form-control">Collision of Shuttle Tanker MT</textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Country
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].countries" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Loss Type
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control" multiple size="1">
+                                                            <option>Business Interruption</option>
+                                                            <option>OEE</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Adj. File Ref
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='location' type="text" class="form-control" value="23432" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr class="hidden-sm-down" width="46%">
+                                                    <th>Year
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].year" value="{{cat.id}}" [selected]="option === selectedOption">{{cat}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Category 3
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].category3" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Dynamically Positioned
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input class="form-control shift-checkbox" type="checkbox" checked>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="46%">Approx.Ins.Val.
+                                                        <span style='color:red;'> *</span> (not limit)
+                                                    </th>
+                                                    <td>
+                                                        <input id='assured' type="text" class="form-control" value="1,200,000" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Year of Instal.
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='assured' type="text" class="form-control" value="1986" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Water Depth
+                                                        <span style='color:red;'> *</span> (feet)
+                                                    </th>
+                                                    <td>
+                                                        <input id='location' type="text" class="form-control" value="3,300" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Cause
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].cause" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="margin-top">
+                                <div class="col-md-4">
+                                    <total-claim-calculator></total-claim-calculator>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card card-block bg-software-gray-1 card-height">
+                                        <h4 class="card-title display-4">Well Information (For OEE only)</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>Type
+                                                                    <span style='color:red;'> *</span>
+                                                                </th>
+                                                                <td>
+                                                                    <select class="form-control">
+                                                                        <option></option>
+                                                                        <option *ngFor="let cat of upStreamLossValidateData[0].type" value="{{cat.id}}" [selected]="option === selectedOption"> {{cat.name}}</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th width="45%">Developmental
+                                                                    <span style='color:red;'> *</span> / Exploratory
+                                                                </th>
+                                                                <td>
+                                                                    <select class="form-control">
+                                                                        <option></option>
+                                                                        <option *ngFor="let cat of upStreamLossValidateData[0].Dev" value="{{cat.id}}" [selected]="option === selectedOption"> {{cat.name}}</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Shale Information
+                                                                    <span style='color:red;'> *</span>
+                                                                </th>
+                                                                <td>
+                                                                    <input type="text" class="form-control">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Depth @ Loss
+                                                                    <span style='color:red;'> *</span> (feet)
+                                                                </th>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="3,330">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>Status
+                                                                    <span style='color:red;'> *</span>
+                                                                </th>
+                                                                <td>
+                                                                    <select class="form-control" [(ngModel)]='status'>
+                                                                        <option></option>
+                                                                        <option *ngFor="let cat of upStreamLossValidateData[0].status" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                            {{cat.name}}</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Shale Well
+                                                                    <span style='color:red;'> *</span>
+                                                                </th>
+                                                                <td>
+                                                                    <select class="form-control">
+                                                                        <option></option>
+                                                                        <option *ngFor="let cat of upStreamLossValidateData[0].shellWell" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                            {{cat.name}}</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>U/G Blowout
+                                                                    <span style='color:red;'> *</span>
+                                                                </th>
+                                                                <td>
+                                                                    <select class="form-control">
+                                                                        <option></option>
+                                                                        <option *ngFor="let cat of upStreamLossValidateData[0].UGBlowout" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                            {{cat.name}}</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Project Total Depth
+                                                                    <span style='color:red;'> *</span>(feet)
+                                                                </th>
+                                                                <td>
+                                                                    <input type="text" class="form-control" value="26,500,000">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="table-responsive hidden-sm-down">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th width="7%"> Notes
+                                                    <span style='color:red;'> *</span>
+                                                </th>
+                                                <td>
+                                                    <textarea rows="4" class="form-control text-area-shift">Detailed information furnished by the Subscriber</textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="hidden-md-up terms-bottom-margin">
+                                    <div>
+                                        <label>Notes
+                                            <span style="color: red">*</span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <textarea rows="4" class="form-control"> Detailed information furnished by the Subscriber</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="source-information-accordian" class="accordion position-padding" role="tablist" ariamultiselectable="true">
+        <div class="card">
+            <a id="basic" class="card-header collapsed" role="tab" data-toggle="collapse" data-parent="#source-information-accordian"
+                href="#sourceInformation" aria-expanded="false" aria-controls="sourceInformation">
+                Source Information
+                <span class="accordion-icon"></span>
+            </a>
+            <div id="sourceInformation" class="collapse" role="tabpanel" arialabelledby="basic">
+                <div class="card-block">
+                    <div class="div-border">
+                        <div class="margin-top">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Source
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='source' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <th width="25%">Subscription Name
+                                                    <span style='color:red;'> *</span>
+                                                </th>
+                                                <td>
+                                                    <input id='subName' type="text" class="form-control" />
+                                                </td>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="asset-information-accordian" class="accordion position-padding" role="tablist" ariamultiselectable="true">
+        <div class="card">
+            <a id="basic" class="card-header collapsed" role="tab" data-toggle="collapse" data-parent="#asset-information-accordian"
+                href="#assetInformation" aria-expanded="false" aria-controls="assetInformation">
+                Asset Information
+                <span class="accordion-icon"></span>
+            </a>
+            <div id="assetInformation" class="collapse" role="tabpanel" arialabelledby="basic">
+                <div class="card-block">
+                    <div class="div-border">
+                        <div class="margin-top">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="table-responsive" style="height:485px">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Platform/ Asset Category Value
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td class="popover__wrapper">
+                                                        <select class="form-control select-control-with inline">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].asset" value="{{cat.id}}" [selected]="option === selectedOption">{{cat.name}}</option>
+                                                        </select>
+                                                          <label class="popover__title">
+                                                            <img class='img-responsive' height="15px" width="15px" src="./assets/images/i-button.svg" >
+                                                        </label>  
+                                                    <div class="push popover__content">
+                                                        <div class="popover__message">Asset Categories</div>
+                                                       <li>1 Poss Val < $ 10 </li>
+                                                        <li>2 Poss Val < $ 40 </li>
+                                                         <li>3 Poss Val < $ 100 </li>
+                                                          <li>4 Poss Val < $ 250</li>
+                                                           <li>5 Poss Val < $ 500 </li>
+                                                            <li>6 Poss Val < $ 1BN </li>
+                                                            <li>7 Poss Val < $ 1BN </li>
+                                                    </div>
+
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tow
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].tow" value="{{cat.id}}" [selected]="option === selectedOption">{{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Year Rebuilt
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='yearRebuilt' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Depth Category
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td  class="popover__wrapper">
+                                                        <select class="form-control select-control-with inline">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].depCat" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                             <label class="popover__title">
+                                                            <img class='img-responsive' height="15px" width="15px" src="./assets/images/i-button.svg">
+                                                        </label>  
+                                                    <div class="push popover__content">
+                                                        <div class="popover__message">Categories</div>
+                                                              <li>A=0-4,999 </li>
+                                                        <li>A=0-4,999  </li>
+                                                         <li>B=5,000-7,499 </li>
+                                                          <li>C=7,500-9999 </li>
+                                                           <li>D=10,000-14,999  </li>
+                                                            <li>E=15000-19,999  </li>
+                                                            <li>F=20000+ </li>
+                                                    </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Field/Unit
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option>Select</option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].fieldUnit" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="46%">Approx. Ins. Val.
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='insValue' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Rated WD Feet
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='ratedWDFeet' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Rig Details checked
+                                                        <span style='color:red;'> *</span>
+                                                        <span style='color:white;'>Extra space </span>
+                                                        <span style='color:white;' class="hidden-md-up">Extr</span>
+                                                    </th>
+                                                    <td>
+                                                        <input class="form-control shift-checkbox" type="checkbox">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Water Depth Category
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='waterDepth' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>GOM Area
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].GomArea" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Rig Design
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='rigDesign' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="46%">Generation
+                                                        <span style='color:red;'> *</span> (semis/dships)
+                                                    </th>
+                                                    <td>
+                                                        <input id='generation' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Asset Description
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].assetDescription" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="44%">Install/ Build Year Category
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='assured' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Sanitised details
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='assured' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="rating-information-accordian" class="accordion position-padding" role="tablist" ariamultiselectable="true">
+        <div class="card">
+            <a id="basic" class="card-header collapsed" role="tab" data-toggle="collapse" data-parent="#rating-information-accordian"
+                href="#ratingInformation" aria-expanded="false" aria-controls="ratingInformation">
+                Rating Information
+                <span class="accordion-icon"></span>
+            </a>
+            <div id="ratingInformation" class="collapse" role="tabpanel" arialabelledby="basic">
+                <div class="card-block">
+                    <div class="div-border">
+                        <div class="margin-top">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="46%">Rating Area
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].ratingArea" value="{{cat.id}}" [selected]="option === selectedOption">{{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>OEE Indexed
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input class="form-control" type="text">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Weld URN
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input class="form-control" type="text">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Adj Individual
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].adjIndividual" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Willis
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].willis" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Check Flag
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input type="checkbox" class="form-control shift-checkbox">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Incomplete
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input type="checkbox" class="form-control shift-checkbox">
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="46%">US Location Code
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].usLocationCode" value="{{cat.id}}" [selected]="option === selectedOption">{{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Indexed Total Claim US$
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" class="form-control">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Oil URN
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" class="form-control">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Transit
+                                                        <span style='color:red;'> *</span>
+                                                        <span style='color:white;'>Extra space </span>
+                                                        <span style='color:white;' class="hidden-md-up">Extr</span>
+                                                    </th>
+                                                    <td>
+                                                        <input class="form-control shift-checkbox" type="checkbox" checked>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Created
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="dd/mm/yyyy">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Updated
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="dd/mm/yyyy">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+
+                                                </tr>
+                                                <tr>
+                                                    <th width="46%">Index Factor
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" class="form-control">
+                                                </tr>
+                                                <tr>
+                                                    <th>Oil Multi
+                                                        <span style='color:red;'> *</span>
+                                                        <span style='color:white;'>Extra space </span>
+                                                        <span style='color:white;' class="hidden-md-up">Extr</span>
+                                                    </th>
+                                                    <td>
+                                                        <input class="form-control shift-checkbox" type="checkbox" checked>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="44%">Event
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option></option>
+                                                            <option *ngFor="let cat of upStreamLossValidateData[0].event" value="{{cat.id}}" [selected]="option === selectedOption">
+                                                                {{cat.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr style="height: 65px"></tr>
+                                                <tr>
+                                                    <th>Created By
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='assured' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Updated By
+                                                        <span style='color:red;'> *</span>
+                                                    </th>
+                                                    <td>
+                                                        <input id='location' type="text" class="form-control" />
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="margin-top">
+                            <div class="col-md-12">
+                                <div class="card card-block bg-software-gray-1">
+                                    <h4 class="card-title display-4">Cost Categories</h4>
+                                    <div class="col-md-8 hidden-sm-down">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th> Actual Cost PD Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="pd" id="pd" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                        <th> Indexed Cost PD Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="pd" id="pd" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th> Actual Cost OEE Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="pd" id="pd" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                        <th> Indexed Cost OEE Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="pd" id="pd" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Actual Cost Total Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="oee" id="oee" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                        <th>Indexed Cost Total Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="oee" id="oee" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                       <div class="col-md-4 hidden-sm-down">
+                                           <!-- <input type=number [(ngModel)]="inFeet"  (change)="onConvert(inFeet)">
+                                           <span> {{res}}</span> -->
+                                       </div>
+                                    <div class="col-md-12 hidden-md-up">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th> Actual Cost PD Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="pd" id="pd" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th> Indexed Cost PD Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="pd" id="pd" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th> Actual Cost OEE Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="pd" id="pd" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th> Indexed Cost OEE Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="pd" id="pd" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Actual Cost Total Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="oee" id="oee" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Indexed Cost Total Claim Category
+                                                            <span style='color:red;'> *</span>
+                                                        </th>
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" aria-describedby="basic-addon1" [(ngModel)]="oee" id="oee" (change)="onChange()">
+                                                                <span class="input-group-addon" id="basic-addon1">$</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-block">
+        <div class="div-border">
+            <div class="margin-top">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Status
+                                            <span style='color:red;'> *</span>
+                                        </th>
+                                        <td>
+                                            <select class="form-control" [(ngModel)]='status'>
+                                                <option></option>
+                                                <option *ngFor="let cat of upStreamLossValidateData[0].statusDetails" value="{{cat.name}}" [selected]="option === selectedOption">{{cat.name}}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody class="hidden-sm-down">
+                                    <tr>
+                                        <th width="15%">Status Comments
+                                            <span style='color:red;'> *</span>
+                                        </th>
+                                        <td>
+                                            <textarea rows="4" class="form-control"></textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody class="hidden-md-up">
+                                    <tr>
+                                        <th>Status Comments
+                                            <span style='color:red;'> *</span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <textarea rows="4" class="form-control"></textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 hidden-sm-down">
+        <button type="button" id='backButton' class="btn btn-secondary float-xs-left top-margin terms-bottom-margin" (click)="onBackToHistory()">Back to List</button>
+        <button type="button" id='submitButton' class="btn btn-primary float-xs-right top-margin terms-bottom-margin" (click)="onSubmit(status)">Submit</button>
+    </div>
+    <div class="col-md-12 col-sm-12 hidden-md-up">
+        <button type="button" id='backButton' class="btn btn-primary  top-margin btn-mob-width" (click)="onSubmit(status)">Submit</button>
+        <button type="button" id='submitButton' class="btn btn-secondary  top-margin terms-bottom-margin btn-mob-width" (click)="onBackToHistory()">Back to List</button>
+    </div>
+</div>
+<div class="col-md-12 col-sm-12 btn-invisible">
+    <button type="button" id='successButton' class="btn btn-primary" data-toggle="modal" data-target="#successValidateLossData"
+        data-backdrop="static" data-keyboard="false"></button>
+</div>
+
+
+<success-confirmation-modal  [status]="status" (onYesEvent)="onYes($event)" (onNoEvent)="onNo()"></success-confirmation-modal>
+
+<div class="col-md-12 col-sm-12 btn-invisible">
+    <button type="button" id='successModalButton' class="btn btn-primary" data-toggle="modal" data-target="#showSuccessModal"
+        data-backdrop="static" data-keyboard="false"></button>
+</div>
+
+
+<success-modal></success-modal>

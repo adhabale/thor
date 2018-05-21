@@ -1,0 +1,1048 @@
+<div class="divClass row bg-software-gray-1 indexing-header">
+    <div class="col-md-12 col-sm-12">
+        <div class="p-1 hidden-sm-down">
+            <h2 class="display-1 left-pad">
+                Search</h2>
+        </div>
+        <div class="p-1 hidden-md-up">
+            <h2 class="display-3 left-pad">
+                Search</h2>
+        </div>
+    </div>
+</div>
+<div class="row top-margin">
+    <div class="col-md-2">
+        <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle btn-line-height" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Saved Searches
+                <span class="caret"></span>
+            </button>
+            <div class="dropdown-menu" arialabelledby="btnGroupDrop1">
+                <a href="#" class="dropdown-item highlightHover">Criteria-1</a>
+                <a href="#" class="dropdown-item highlightHover">1973,1988</a>
+                <a href="#" class="dropdown-item highlightHover"> Asia,1987,1999</a>
+                <a href="#" class="dropdown-item highlightHover">United States,1979</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" *ngIf="!isSummaryHidden && !isHide">
+        <div id="summary"  class="accordion margin-left"  role="tablist"  ariamultiselectable="true" *ngIf=" selectedYears.length || selectedAreaNames.length || selectedCountriesNames.length ||selectedGomNames.length ||selectedUsLocNames.length ||selectedUsLocNames.length ||
+        selectedCategoryNames.length|| selectedSubCategoryNames.length ||selectedSubCategory2Names.length ||selectedCarNames.length ||selectedLossTypesNames.length ||selectedCausesNames.length ||selectedUdpNames.length ||selectedEventNames.length 
+        || PDMin || PDmax || OEEmin || OEEmax || BImin || BImax || Totalmin || Totalmax || TotalIndexedmin || TotalIndexedmax ||selectedRatingareaNames.length|| selectedWellTypeNames.length||selectedDrillingStatusNames.length||selectedUgboNames.length||selectedDepthCategoriesNames.length 
+       || selectedPdClaimActualNames.length || selectedPdClaimIndexedNames.length ||selectedOeClaimActualNames.length ||selectedOeClaimIndexedNames.length ||selectedTotalClaimActualNames.length ||selectedTotalClaimIndexedNames.length ">
+            <div class="">
+                <a id="summaryHeading"  class="card-header collapsed"  role="tab"  data-toggle="collapse"  data-parent="#summary"  href="#summaryCollapse"
+                    aria-expanded="false"  aria-controls="summaryCollapse">
+                    Summary
+                    <span class="caret"></span>
+                        </a>
+
+    </div>
+</div>
+
+</div>
+<div class="col-md-3" *ngIf="isSummaryHidden || isHide"></div>
+<div class="col-md-2"></div>
+<div class="col-md-5">
+    <button class="btn btn-primary btn-search" (click)="openSearchModal()">Search</button>
+    <button class="btn btn-secondary btn-save" (click)="saveCriteria()">Save</button>
+    <button class="btn btn-secondary btn-save" (click)="reset()">Reset</button>
+</div>
+</div>
+<div *ngIf="isShowSuccess" class="top-margin">
+    <div class="alert alert-success alert-dismissible fade in divClass-margin" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="isSuccess=!saveSuccess">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="alert-text hidden-sm-down">Search Criteria saved successfully.</span>
+        <span class="alert-text alert-text-mb hidden-md-up">Search Criteria saved successfully.</span>
+    </div>
+</div>
+<!--Hidden Button For SearchModal-->
+<div class="col-md-12 col-sm-12" style="display:none;">
+    <button type="button" id='searchModal' class="btn btn-primary" data-toggle="modal" data-target="#showSearchModal">Open Search Modal</button>
+</div>
+<!--Hidden Button For SaveModal-->
+<div class="col-md-12 col-sm-12" style="display:none;">
+    <button type="button" id='saveCriteriaModal' class="btn btn-primary" data-toggle="modal" data-target="#showSaveCriteriaModalModal">Open Save Criteria Modal</button>
+</div>
+<!--Subscription Search Modal-->
+<div class="modal fade search-modal" id='showSearchModal' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arialabel="Close">
+                    <span ariahidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Save Search</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12 p-top-bottom">
+                                <div class="table-responsive addSubTableHeight table-container">
+                                    <table id='addSubTable' class="table">
+                                        <thead>
+                                            <th class='header-add-sub'>Would you like to save the selected search criteria ?</th>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary margin-set-left" style="margin-right:6px" data-dismiss="modal" name="noButton"
+                    (click)="navigateToReportsPage()">No</button>
+                <button type="button" class="btn btn-primary margin-set-right" style="margin-right:6px" data-dismiss="modal" name="yesButton"
+                    (click)="saveSearchCriteria()">Yes</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Subscription Save Modal-->
+<div class="modal fade search-modal" id='showSaveCriteriaModalModal' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arialabel="Close">
+                    <span ariahidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Save Search</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12 p-top-bottom">
+                                <div class="table-responsive addSubTableHeight table-container">
+                                    <label>Search Criteria Name</label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-width" required name="criteriaName" autofocus placeholder="Search Criteria Name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary margin-set-left" style="margin-right:6px" data-dismiss="modal" name="cancelButton">Cancel</button>
+                <button type="button" class="btn btn-primary margin-set-right" style="margin-right:6px" data-dismiss="modal" name="saveButton"
+                    (click)="showSaveMessage()">Save</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="!isSummaryHidden && !isHide">
+    <div class="col-md-12">
+        <div id="summaryCollapse"  class="collapse summary top-margin divClass-margin"  role="tabpanel"  arialabelledby="summaryHeading"
+            *ngIf=" selectedYears.length || selectedAreaNames.length || selectedCountriesNames.length ||selectedGomNames.length ||selectedUsLocNames.length ||selectedUsLocNames.length ||
+        selectedCategoryNames.length|| selectedSubCategoryNames.length ||selectedSubCategory2Names.length ||selectedCarNames.length ||selectedLossTypesNames.length ||selectedCausesNames.length ||selectedUdpNames.length ||selectedEventNames.length 
+        || PDMin || PDmax || OEEmin || OEEmax || BImin || BImax || Totalmin || Totalmax || TotalIndexedmin || TotalIndexedmax ||selectedRatingareaNames.length|| selectedWellTypeNames.length||selectedDrillingStatusNames.length||selectedUgboNames.length||selectedDepthCategoriesNames.length 
+       || selectedPdClaimActualNames.length || selectedPdClaimIndexedNames.length ||selectedOeClaimActualNames.length ||selectedOeClaimIndexedNames.length ||selectedTotalClaimActualNames.length ||selectedTotalClaimIndexedNames.length ">
+            <div class="card-block max-height">
+
+                <div class="row margin-bottom" *ngIf="selectedYears.length" id="yearoflossSummary">
+                    <div class="col-md-2 col-sm-12">
+                        <div class="chip-category">
+                            Year of Loss
+                            <span class="closebtn-category" (click)="closeYearofLoss()">&times;</span>
+                        </div>
+
+    </div>
+    <div class="col-md-10 col-sm-12 ">
+        <div class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedYears">
+            {{sel}}
+            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+</div>
+
+</div>
+
+<div class="row margin-bottom" id="locationSummary" *ngIf="selectedAreaNames.length || selectedCountriesNames.length ||selectedGomNames.length ||selectedUsLocNames.length ||selectedUsLocNames.length ">
+    <div class="col-md-2 col-sm-12">
+        <div class="chip-category">
+            Location
+            <span class="closebtn-category" (click)="closeLocation()">&times;</span>
+        </div>
+        </div>
+        <div class="col-md-10 col-sm-12 ">
+
+            <div class="chip" *ngIf="selectedAreaNames.length">
+                <b>Area</b>
+                <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedAreaNames">{{sel}}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                </span>
+
+            </div>
+
+            <div class="chip" *ngIf="selectedCountriesNames.length">
+                <b>Country</b>
+                <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedCountriesNames">{{sel}}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                </span>
+
+            </div>
+
+            <div class=" chip" *ngIf="location">
+                <b>Location</b>
+                <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                <span class="tag tag-pill tag-info tag-margin-right">{{location}}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                </span>
+
+            </div>
+            <div class="chip" *ngIf="selectedGomNames.length">
+                <b>GOM</b>
+                <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedGomNames">{{sel}}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                </span>
+
+            </div>
+
+            <div class="chip" *ngIf="selectedUsLocNames.length">
+                <b>US Location</b>
+                <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedUsLocNames">{{sel}}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                </span>
+
+            </div>
+
+            <div class="chip" *ngIf="radio">
+                <b>Land/Offshore</b>
+                <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                <span class="tag tag-pill tag-info tag-margin-right">{{radio}}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                </span>
+
+            </div>
+
+            </div>
+
+            </div>
+            <div class="row margin-bottom" id="lossDetailsSummary" *ngIf="selectedCategoryNames.length|| selectedSubCategoryNames.length ||selectedSubCategory2Names.length ||selectedCarNames.length ||selectedLossTypesNames.length ||selectedCausesNames.length ||selectedUdpNames.length ||selectedEventNames.length ">
+                <div class="col-md-2">
+                    <div class="chip-category">
+                        Loss Details
+                        <span class="closebtn-category" (click)="closeLossDetails()">&times;</span>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class=" chip" *ngIf="selectedCategoryNames.length">
+                        <b>Category</b>
+                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedCategoryNames">{{sel}}
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </span>
+
+                    </div>
+
+                    <div class="chip" *ngIf="selectedSubCategoryNames.length">
+                        <b>Subcategory</b>
+                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedSubCategoryNames">{{sel}}
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </span>
+
+                    </div>
+
+
+                    <div class=" chip" *ngIf="selectedSubCategory2Names.length">
+                        <b>Subcategory 2</b>
+                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedSubCategory2Names">{{sel}}
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </span>
+
+                    </div>
+
+                    <div class=" chip" *ngIf="selectedCarNames.length">
+                        <b>CAR/OP</b>
+                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedCarNames">{{sel}}
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </span>
+
+                    </div>
+
+                    <div class="chip" *ngIf="selectedLossTypesNames.length">
+                        <b>Loss Types</b>
+                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedLossTypesNames">{{sel}}
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </span>
+
+                    </div>
+                    <div class="chip" *ngIf="selectedCausesNames.length">
+                        <b>Causes</b>
+                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedCausesNames">{{sel}}
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </span>
+
+                    </div>
+
+                    <div class="chip" *ngIf="selectedUdpNames.length">
+                        <b>UP/DOWN/Power</b>
+                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedUdpNames">{{sel}}
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </span>
+
+                    </div>
+                    <div class="chip" *ngIf="selectedEventNames.length">
+                        <b>Event</b>
+                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedEventNames">{{sel}}
+                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-bottom" id="claimsSummary" *ngIf="PDMin || PDmax || OEEmin || OEEmax || BImin || BImax || Totalmin || Totalmax || TotalIndexedmin || TotalIndexedmax">
+                <div class="col-md-2 col-sm-12">
+                    <div class="chip-category">
+                        Claim US $
+                        <span class="closebtn-category" (click)="closeClaims()">&times;</span>
+                    </div>
+                    </div>
+                    <div class="col-md-10 col-sm-12 ">
+                        <div class="chip" *ngIf="PDMin || PDmax">
+                            <b>PD</b>
+                            <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                            <span class="tag tag-pill tag-info tag-margin-right">MIN:{{PDMin}},&nbsp;MAX:{{PDmax}}
+                                <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                            </span>
+
+                        </div>
+
+                        <div class="chip" *ngIf="OEEmin || OEEmax">
+                            <b>OEE</b>
+                            <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                            <span class="tag tag-pill tag-info tag-margin-right">MIN:{{OEEmin}},&nbsp;MAX:{{OEEmax}}
+                                <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                            </span>
+
+                        </div>
+
+                        <div class="chip" *ngIf="BImin || BImax">
+                            <b>BI</b>
+                            <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                            <span class="tag tag-pill tag-info tag-margin-right">MIN:{{BImin}},&nbsp;MAX:{{BImax}}
+                                <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                            </span>
+
+                        </div>
+
+                        <div class="chip" *ngIf="Totalmin || Totalmax">
+                            <b>Total</b>
+                            <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                            <span class="tag tag-pill tag-info tag-margin-right">MIN:{{Totalmin}},&nbsp;MAX:{{Totalmax}}
+                                <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                            </span>
+
+                        </div>
+                        <div class="chip" *ngIf="TotalIndexedmin || TotalIndexedmax">
+                            <b>Total Indexed</b>
+                            <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                            <span class="tag tag-pill tag-info tag-margin-right">MIN:{{TotalIndexedmin}},&nbsp;MAX:{{TotalIndexedmax}}
+                                <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                            </span>
+
+                        </div>
+                        </div>
+
+                        </div>
+
+
+                        <div class="row margin-bottom" id="wellDetailsSummary" *ngIf="selectedRatingareaNames.length|| selectedWellTypeNames.length||selectedDrillingStatusNames.length||selectedUgboNames.length||selectedDepthCategoriesNames.length">
+                            <div class="col-md-2 col-sm-12">
+                                <div class="chip-category">
+                                    Well Details
+                                    <span class="closebtn-category" (click)="closeWellDetails()">&times;</span>
+                                </div>
+
+                                </div>
+                                <div class="col-md-10 col-sm-12 ">
+                                    <div class="chip" *ngIf="selectedRatingareaNames.length">
+                                        <b>Rating Area</b>
+                                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedRatingareaNames">{{sel}}
+                                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                        </span>
+
+                                    </div>
+
+                                    <div class="chip" *ngIf="selectedWellTypeNames.length">
+                                        <b>Well Types</b>
+                                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedWellTypeNames">{{sel}}
+                                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                        </span>
+
+                                    </div>
+
+                                    <div class="chip" *ngIf="selectedDrillingStatusNames.length">
+                                        <b>Drilling Status</b>
+                                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedDrillingStatusNames">{{sel}}
+                                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                        </span>
+
+                                    </div>
+
+                                    <div class="chip" *ngIf="selectedUgboNames.length">
+                                        <b>UGBO</b>
+                                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedUgboNames">{{sel}}
+                                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                        </span>
+
+                                    </div>
+                                    <div class="chip" *ngIf="selectedDepthCategoriesNames.length">
+                                        <b>Depth Categories</b>
+                                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                        <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let sel of selectedDepthCategoriesNames">{{sel}}
+                                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                        </span>
+
+                                    </div>
+                                    <div class="chip" *ngIf="ptdMin || ptdMax">
+                                        <b>PTD</b>
+                                        <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                        <span class="tag tag-pill tag-info tag-margin-right">MIN:{{ptdMin}},&nbsp;MAX:{{ptdMax}}
+                                            <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                        </span>
+
+                                    </div>
+                                    </div>
+
+                                    </div>
+
+
+                                    <div class="row margin-bottom details" id="costCatSummary" *ngIf="selectedPdClaimActualNames.length || selectedPdClaimIndexedNames.length ||selectedOeClaimActualNames.length ||selectedOeClaimIndexedNames.length ||selectedTotalClaimActualNames.length ||selectedTotalClaimIndexedNames.length">
+                                        <div class="col-md-2 col-sm-12">
+                                            <div class="chip-category">
+                                                Cost Categories
+                                                <span class="closebtn-category" (click)="closeCostCat()">&times;</span>
+                                            </div>
+                                            </div>
+                                            <div class="col-md-10 col-sm-12 ">
+                                                <div class="chip" *ngIf="selectedPdClaimActualNames.length">
+                                                    <b>PD Claim-Actual</b>
+                                                    <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                                    <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let val of selectedPdClaimActualNames">{{val}}
+                                                        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                                    </span>
+
+                                                </div>
+
+                                                <div class="chip" *ngIf="selectedPdClaimIndexedNames.length">
+                                                    <b>PD Claim-Indexed</b>
+                                                    <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                                    <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let val of selectedPdClaimIndexedNames">{{val}}
+                                                        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                                    </span>
+
+                                                </div>
+
+
+                                                <div class="chip" *ngIf="selectedOeClaimActualNames.length">
+                                                    <b>OEE Claim-Actual</b>
+                                                    <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                                    <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let val of selectedOeClaimActualNames">{{val}}
+                                                        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                                    </span>
+
+                                                </div>
+
+                                                <div class="chip" *ngIf="selectedOeClaimIndexedNames.length">
+                                                    <b>OEE Claim-Indexed</b>
+                                                    <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                                    <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let val of selectedOeClaimIndexedNames">{{val}}
+                                                        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                                    </span>
+
+                                                </div>
+
+                                                <div class="chip" *ngIf="selectedTotalClaimActualNames.length">
+                                                    <b>Total Claim-Actual</b>
+                                                    <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                                    <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let val of selectedTotalClaimActualNames">{{val}}
+                                                        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                                    </span>
+
+                                                </div>
+
+                                                <div class="chip" *ngIf="selectedTotalClaimIndexedNames.length">
+                                                    <b>Total Claim-Indexed</b>
+                                                    <span class="closebtn-i" onclick="this.parentElement.style.display='none'">&times;</span>:
+                                                    <span class="tag tag-pill tag-info tag-margin-right" *ngFor="let val of selectedTotalClaimIndexedNames">{{val}}
+                                                        <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+                                                    </span>
+
+                                                </div>
+
+
+
+                                                </div>
+
+                                                </div>
+
+
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="card card-tabs divClass-margin">
+                                                            <div class="card-header margin-top">
+                                                                <ul class="nav nav-tabs card-header-tabs float-xs-left">
+                                                                    <li class="nav-item">
+                                                                        <a id='yeartab' class="nav-link active" data-toggle="tab" href="#year">Year of Loss</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a id='locationtab' class="nav-link" data-toggle="tab" href="#location">Location</a>
+                                                                    </li>
+                                                                    <li class="nav-item ">
+                                                                        <a id='losstab' class="nav-link" data-toggle="tab" href="#loss">Loss Details</a>
+                                                                    </li>
+                                                                    <li class="nav-item ">
+                                                                        <a id='claimtab' class="nav-link" data-toggle="tab" href="#claim">Claim US$</a>
+                                                                    </li>
+                                                                    <li class="nav-item ">
+                                                                        <a id='welltab' class="nav-link" data-toggle="tab" href="#well">Well Details</a>
+                                                                    </li>
+                                                                    <li class="nav-item ">
+                                                                        <a id='costtab' class="nav-link" data-toggle="tab" href="#cost">Cost Categories</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="tab-content card-block border-box">
+                                                                <div id="year" class="tab-pane fade in active card-text">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-9">
+                                                                                <div class="row">
+                                                                                    <table id="table" class='table table-year'>
+                                                                                        <tr id="70">
+                                                                                            <td (click)="select70Decade()" class="inactive-button-class td-hover" *ngIf="select70">1970s</td>
+                                                                                            <td (click)="select70Decade2()" class="active-button-class td-hover" *ngIf="!select70">1970s</td>
+                                                                                            <td class="disabled not-allowed">1970</td>
+                                                                                            <td class="disabled not-allowed">1971</td>
+                                                                                            <td class="td-hover">1972</td>
+                                                                                            <td class="td-hover">1973</td>
+                                                                                            <td class="td-hover">1974</td>
+                                                                                            <td class="td-hover">1975</td>
+                                                                                            <td class="td-hover">1976</td>
+                                                                                            <td class="td-hover">1977</td>
+                                                                                            <td class="td-hover">1978</td>
+                                                                                            <td class="td-hover">1979</td>
+
+                                                                                        </tr>
+
+                                                                                        <tr id="80">
+                                                                                            <td (click)="select80Decade()" class="inactive-button-class td-hover" *ngIf="select80">1980s</td>
+                                                                                            <td (click)="select80Decade2()" class="active-button-class td-hover" *ngIf="!select80">1980s</td>
+
+                                                                                            <td class="td-hover">1980</td>
+                                                                                            <td class="td-hover">1981</td>
+                                                                                            <td class="td-hover">1982</td>
+                                                                                            <td class="td-hover">1983</td>
+                                                                                            <td class="td-hover">1984</td>
+                                                                                            <td class="td-hover">1985</td>
+                                                                                            <td class="td-hover">1986</td>
+                                                                                            <td class="td-hover">1987</td>
+                                                                                            <td class="td-hover">1988</td>
+                                                                                            <td class="td-hover">1989</td>
+
+                                                                                        </tr>
+                                                                                        <tr id="90">
+                                                                                            <td (click)="select90Decade()" class="inactive-button-class td-hover" *ngIf="select90">1990s</td>
+                                                                                            <td (click)="select90Decade2()" class="active-button-class td-hover" *ngIf="!select90">1990s</td>
+
+                                                                                            <td class="td-hover">1990</td>
+                                                                                            <td class="td-hover">1991</td>
+                                                                                            <td class="td-hover">1992</td>
+                                                                                            <td class="td-hover">1993</td>
+                                                                                            <td class="td-hover">1994</td>
+                                                                                            <td class="td-hover">1995</td>
+                                                                                            <td class="td-hover">1996</td>
+                                                                                            <td class="td-hover">1997</td>
+                                                                                            <td class="td-hover">1998</td>
+                                                                                            <td class="td-hover">1999</td>
+
+                                                                                        </tr>
+                                                                                        <tr id="2000">
+                                                                                            <td (click)="select2000Decade()" class="inactive-button-class td-hover" *ngIf="select2000">2000s</td>
+                                                                                            <td (click)="select2000Decade2()" class="active-button-class td-hover" *ngIf="!select2000">2000s</td>
+
+                                                                                            <td class="td-hover">2000</td>
+                                                                                            <td class="td-hover">2001</td>
+                                                                                            <td class="td-hover">2002</td>
+                                                                                            <td class="td-hover">2003</td>
+                                                                                            <td class="td-hover">2004</td>
+                                                                                            <td class="td-hover">2005</td>
+                                                                                            <td class="td-hover">2006</td>
+                                                                                            <td class="td-hover">2007</td>
+                                                                                            <td class="td-hover">2008</td>
+                                                                                            <td class="td-hover">2009</td>
+                                                                                        </tr>
+                                                                                        <tr id="2010">
+                                                                                            <td (click)="select2010Decade()" class="inactive-button-class td-hover" *ngIf="select2010">2010s</td>
+                                                                                            <td (click)="select2010Decade2()" class="active-button-class td-hover" *ngIf="!select2010">2010s</td>
+                                                                                            <td class="td-hover">2010</td>
+                                                                                            <td class="td-hover">2011</td>
+                                                                                            <td class="td-hover">2012</td>
+                                                                                            <td class="td-hover">2013</td>
+                                                                                            <td class="td-hover">2014</td>
+                                                                                            <td class="td-hover">2015</td>
+                                                                                            <td class="td-hover">2016</td>
+                                                                                            <td class="td-hover">2017</td>
+                                                                                            <td class="td-hover">2018</td>
+                                                                                            <td class="disabled not-allowed">2019</td>
+                                                                                        </tr>
+
+                                                                                    </table>
+
+                                                                                    <!-- <input type="button" name="OK" value="OK" (click)="singleSelect()" /> -->
+                                                                                    <!-- <input type="button" name="All"  value="All" (click)="selectAll()"/>
+                                    <input type="button" name="All" value="Des" (click)="deselectAll()"/> -->
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-10"></div>
+                                                                        <div class="col-md-12">
+                                                                            <button type="button" class="btn btn-primary pull-right hidden-sm-down margin-set-left float-xs-right" style="margin-left:6px"
+                                                                                data-toggle="tab" href="#location" (click)='active("location");singleSelect();summaryDetails();'>Continue</button>
+                                                                            <button class="btn btn-secondary pull-right margin-set-right float-xs-right" style="margin-right:6px" (click)="selectAll()"
+                                                                                *ngIf="selectionFlag">Select All</button>
+                                                                            <button class="btn btn-secondary pull-right margin-set-right float-xs-right" style="margin-right:6px" (click)="deselectAll()"
+                                                                                *ngIf="!selectionFlag">Deselect All</button>
+                                                                            <!-- </div>
+                                 <div class="col-md-1"> -->
+
+                                                                        </div>
+                                                                        <!-- <div class="col-md-12">
+                                    <div class="padding-button-footer">
+                                        <button class="btn btn-secondary " (click)="selectAll()" *ngIf="selectionFlag">Select</button>
+                                         <button class="btn btn-secondary" (click)="deselectAll()" *ngIf="!selectionFlag">Deselect</button>
+                                        <button type="button" class="btn btn-primary pull-right hidden-sm-down" data-toggle="tab" (click)='active("location")' href="#location">Continue</button>
+                                    </div>
+                                </div> -->
+                                                                    </div>
+                                                                </div>
+                                                                <div id="location" class="tab-pane fade card-text">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-12 ">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="area">Area</label>
+                                                                                            <select [(ngModel)]="areasSelected" class="form-control" size='10' id="area" multiple>
+                                                                                                <option *ngFor='let area of areaList' [value]='area.code'>{{area.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="country">Country</label>
+                                                                                            <select [(ngModel)]="countriesSelected" class="form-control" id="country" size='10' multiple>
+
+                                                                                                <option *ngFor='let country of countryList' [value]='country.code'>{{country.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="location">Location</label>
+                                                                                            <input type="text" [(ngModel)]="location" class="form-control" id="location" placeholder="Search Location">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="gom">GOM Area</label>
+                                                                                            <select [(ngModel)]="gomSelected" class="form-control" id="gom" size='10' multiple>
+
+                                                                                                <option *ngFor='let gom of gomList' [value]='gom.code'>{{gom.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="uslc">US Location Code</label>
+                                                                                            <select [(ngModel)]="usLocSelected" class="form-control" id="uslc" size='10' multiple>
+
+                                                                                                <option *ngFor='let us of usLoc' [value]='us.code'>{{us.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group ">
+                                                                                            <label for="uslc">Land/OffShore</label>
+
+                                                                                            <div class="col-md-12 ">
+                                                                                                <input class="" [(ngModel)]="radio" type="radio" value="either" id="either" name="lo" [checked]="radio==='either'" />
+                                                                                                <label for="either" class="control-label">Either</label>
+                                                                                            </div>
+                                                                                            <div class="col-md-12">
+                                                                                                <input class="" [(ngModel)]="radio" type="radio" value="Land" id="Land" name="lo" [checked]="radio==='land'" />
+                                                                                                <label for="Land" class="control-label">Land</label>
+                                                                                            </div>
+                                                                                            <div class="col-md-12">
+                                                                                                <input class="" [(ngModel)]="radio" type="radio" value="offshore" id="offshore" name="lo" [checked]="radio==='offshore'"
+                                                                                                />
+                                                                                                <label for="offshore" class="control-label">Offshore</label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="padding-button-footer">
+                                                                                        <button type="button" class="btn btn-secondary pull-left hidden-sm-down " (click)='active("year")' data-toggle="tab" href="#year">Back</button>
+                                                                                        <button type="button" class="btn btn-primary pull-right hidden-sm-down " (click)='locationContinue()' data-toggle="tab" href="#loss">Continue</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="loss" class="tab-pane fade card-text">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-12 ">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label for="category">Category</label>
+                                                                                            <select [(ngModel)]="categorySelected" class="form-control" size='5' id="category" multiple>
+
+                                                                                                <option *ngFor='let catg of category' [value]='catg.code'>{{catg.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label for="subcategory">Subcategory</label>
+                                                                                            <select [(ngModel)]="subCategorySelected" class="form-control" size='5' id="subcategory" multiple>
+
+                                                                                                <option *ngFor='let cat of subCat' [value]='cat.code'>{{cat.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label for="subcategory2">Subcategory 2</label>
+                                                                                            <select [(ngModel)]="subCategory2Selected" class="form-control" size='5' id="subcategory2" multiple>
+
+                                                                                                <option *ngFor='let cat of subCat2' [value]='cat.code'>{{cat.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label for="car/op">CAR/OP</label>
+                                                                                            <select [(ngModel)]="carSelected" class="form-control" size='5' id="car/op" multiple>
+
+                                                                                                <option *ngFor='let c of car' [value]='c.code'>{{c.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label for="losstype">Loss Type</label>
+                                                                                            <select [(ngModel)]="lossTypeSelected" class="form-control" size='5' id="losstype" multiple>
+
+                                                                                                <option *ngFor='let loss of lossType' [value]='loss.code'>{{loss.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label for="cause">Cause</label>
+                                                                                            <select [(ngModel)]="causesSelected" class="form-control" size='5' id="cause" multiple>
+
+                                                                                                <option *ngFor='let cause of causes' [value]='cause.code'>{{cause.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label for="updownpower">Up/Down/Power</label>
+                                                                                            <select [(ngModel)]="udpSelected" class="form-control" size='5' id="updownpower" multiple>
+
+                                                                                                <option *ngFor='let u of udp' [value]='u.code'>{{u.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <div class="form-group">
+                                                                                            <label for="event">Event</label>
+                                                                                            <select [(ngModel)]="eventSelected" class="form-control" size='5' id="event" multiple>
+
+                                                                                                <option *ngFor='let event of events' [value]='event.code'>{{event.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="padding-button-footer">
+                                                                                        <button type="button" class="btn btn-secondary pull-left hidden-sm-down " data-toggle="tab" (click)='active("location")'
+                                                                                            href="#location">Back</button>
+                                                                                        <button type="button" class="btn btn-primary pull-right hidden-sm-down " data-toggle="tab" (click)='continueLossDetails()'
+                                                                                            href="#claim">Continue</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="claim" class="tab-pane fade card-text">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-12 ">
+                                                                                <div class="table-responsive">
+                                                                                    <table class="table">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th width='5%'></th>
+                                                                                                <th width='19%' data-toggle="tooltip" data-placement="top" title="Physical Damage">PD</th>
+                                                                                                <th width='19%' data-toggle="tooltip" data-placement="top" title="Operators Extra Expense">OEE</th>
+                                                                                                <th width='19%' data-toggle="tooltip" data-placement="top" title="Business Interruption">BI</th>
+                                                                                                <th width='19%'>Total</th>
+                                                                                                <th width='19%'>Total Indexed</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <th>Min</th>
+                                                                                                <td>
+                                                                                                    <input [(ngModel)]="PDMin" type="text" class="form-control" id="PDmin">
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input [(ngModel)]="OEEmin" type="text" class="form-control" id="OEEmin">
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input [(ngModel)]="BImin" type="text" class="form-control" id="BImin">
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input [(ngModel)]="Totalmin" type="text" class="form-control" id="Totalmin">
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input [(ngModel)]="TotalIndexedmin" type="text" class="form-control" id="TotalIndexedmin">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th>Max</th>
+                                                                                                <td>
+                                                                                                    <input [(ngModel)]="PDmax" type="text" class="form-control" id="PDmax">
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input [(ngModel)]="OEEmax" type="text" class="form-control" id="OEEmax">
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input [(ngModel)]="BImax" type="text" class="form-control" id="BImax">
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input [(ngModel)]="Totalmax" type="text" class="form-control" id="Totalmax">
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <input [(ngModel)]="TotalIndexedmax" type="text" class="form-control" id="TotalIndexedmax">
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="padding-button-footer">
+                                                                                        <button type="button" class="btn btn-secondary pull-left hidden-sm-down " (click)='active("loss")' data-toggle="tab" href="#loss">Back</button>
+                                                                                        <button type="button" class="btn btn-primary pull-right hidden-sm-down " (click)='active("well")' data-toggle="tab" href="#well">Continue</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="well" class="tab-pane fade card-text">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-12 ">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="ratingareaSelected">Rating Area</label>
+                                                                                            <select [(ngModel)]="ratingareaSelected" class="form-control" size='10' id="ratingarea" multiple>
+
+                                                                                                <option *ngFor='let area of ratingArea' [value]='area.value'>{{area.area}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="welltype">Well Type</label>
+                                                                                            <select [(ngModel)]="wellTypeSelected" class="form-control" id="welltype" size='10' multiple>
+
+                                                                                                <option *ngFor='let well of wellTypes' [value]='well.value'>{{well.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="drillingstatus">Drilling Status</label>
+                                                                                            <select [(ngModel)]="drillingSelected" class="form-control" id="welltype" size='10' multiple>
+
+                                                                                                <option *ngFor='let st of status' [value]='st.code'>{{st.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="ugbo" data-toggle="tooltip" data-placement="right" title="Underground Blowout">UGBO</label>
+                                                                                            <select [(ngModel)]="ugboSelected" class="form-control" id="ugbo" size='10' multiple>
+
+                                                                                                <option *ngFor='let ug of ugbo' [value]='ug.value'>{{ug.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="depth">Depth Category</label>
+                                                                                            <select [(ngModel)]="depthCatSelected" class="form-control" id="depth" size='10' multiple>
+
+                                                                                                <option *ngFor='let dc of depthCategories' [value]='dc.value'>{{dc.name}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-2">
+                                                                                        <div class="form-group">
+                                                                                            <label for="PTD" data-toggle="tooltip" data-placement="right" title="Projected Total Depth">PTD</label>
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="min">Min</label>
+                                                                                            <input [(ngModel)]="ptdMin" type="text" class="form-control" id="min">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <br>
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label for="max">Max</label>
+                                                                                            <input [(ngModel)]="ptdMax" type="text" class="form-control" id="max">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="padding-button-footer">
+                                                                                        <button type="button" class="btn btn-secondary pull-left hidden-sm-down " (click)='active("claim")' data-toggle="tab" href="#claim">Back</button>
+                                                                                        <button type="button" class="btn btn-primary pull-right hidden-sm-down " (click)='continueWell()' data-toggle="tab" href="#cost">Continue</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="cost" class="tab-pane fade card-text">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-12 ">
+                                                                                <div class="table-responsive">
+                                                                                    <table class="table">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th width='10%'></th>
+                                                                                                <th width='30%' data-toggle="tooltip" data-placement="top" title="Physical Damage Claims">PD Claim</th>
+                                                                                                <th width='30%' data-toggle="tooltip" data-placement="top" title="Operators Extra Expense Claims">OEE Claim</th>
+                                                                                                <th width='30%'>Total Claim</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <th>Actual</th>
+                                                                                                <td>
+                                                                                                    <select [(ngModel)]="pdClaimActualSelected" class="form-control" size='4' id="PDClaimActual" (change)="updatePdClaimActual(pdClaimActualSelected)"
+                                                                                                        multiple>
+
+                                                                                                        <option *ngFor='let claim of claimList' [value]='claim.value'>{{claim.value}}</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <select [(ngModel)]="oeeClaimActualSelected" class="form-control" size='4' id="OEEClaimActual" (change)="updateOeClaimActual(oeeClaimActualSelected)"
+                                                                                                        multiple>
+                                                                                                        <option *ngFor='let claim of claimList' [value]='claim.value'>{{claim.value}}</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <select [(ngModel)]="totalClaimActualSelected" class="form-control" size='4' id="TotalClaimActual" (change)="updateTotalClaimActual(totalClaimActualSelected)"
+                                                                                                        multiple>
+                                                                                                        <option *ngFor='let claim of claimList' [value]='claim.value'>{{claim.value}}</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th>Indexed</th>
+                                                                                                <td>
+                                                                                                    <select [(ngModel)]="pdClaimIndexedSelected" class="form-control" size='4' id="PDClaim" (change)="updatePdClaimIndexed(pdClaimIndexedSelected)"
+                                                                                                        multiple>
+                                                                                                        <option *ngFor='let claim of claimList' [value]='claim.value'>{{claim.value}}</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <select [(ngModel)]="oeClaimIndexedSelected" class="form-control" size='4' id="OEEClaim" (change)="updateOeClaimIndexed(oeClaimIndexedSelected)"
+                                                                                                        multiple>
+                                                                                                        <option *ngFor='let claim of claimList' [value]='claim.value'>{{claim.value}}</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <select [(ngModel)]="totalClaimIndexedSelected" class="form-control" size='4' id="TotalClaim" (change)="updateTotalClaimIndexed(totalClaimIndexedSelected)"
+                                                                                                        multiple>
+                                                                                                        <option *ngFor='let claim of claimList' [value]='claim.value'>{{claim.value}}</option>
+                                                                                                    </select>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="padding-button-footer">
+                                                                                        <button type="button" class="btn btn-secondary pull-left hidden-sm-down " (click)='active("well")' data-toggle="tab" href="#well">Back</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>

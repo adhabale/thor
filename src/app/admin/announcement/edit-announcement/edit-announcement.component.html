@@ -1,0 +1,77 @@
+<div class="modal fade user-search-result" id='editAnnouncementModal' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button (click)="onClose()" type="button" class="close" data-dismiss="modal" arialabel="Close">
+          <span ariahidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Edit Announcement</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+              <div class="table-responsive addSubTableHeight table-container">
+                <table id='addSubTable' class="table">
+                  <tbody>
+                    <tr>
+                      <th>Title
+                        <span style='color:red;'>*</span>
+                      </th>
+                      <td>
+                        <input type="text" class="form-control" autocomplete="off" name='title' required value="Announcement 1" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Description
+                        <span style='color:red;'>*</span>
+                      </th>
+                      <td>
+                        <textarea rows="4" class="form-control">With effect from 21st May 2018, mining and metals losses will be removed from the Energy losses Database as they are not considered core energy risks.
+                        </textarea>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Valid From
+                        <span style='color:red;'>*</span>
+                      </th>
+                      <td>
+                        <datepicker datepickerId="startDate" name="startDate" isRequired='true' [selectedDate]="startDate" (dateChange)="setStartDate($event)"
+                          (dateFormatValidation)='checkStartDateFormat($event)'></datepicker>
+                      </td>
+                    </tr>
+                    <tr (click)="showExtra()">
+                      <th>Valid Until
+                        <span style='color:red;'>*</span>
+                      </th>
+                      <td>
+                        <datepicker datepickerId="endDate" name="endDate" isRequired='true' [selectedDate]="endDate" (dateChange)="setEndDate($event)"
+                          (dateFormatValidation)='checkEndDateFormat($event)'></datepicker>
+                      </td>
+                    </tr>
+                    <tr height="210px" *ngIf="showFlag"></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-block hidden-md-up" (click)="onSave()" data-dismiss="modal" name="continueButton">
+          Save
+        </button>
+        <button type="button" class="btn btn-secondary btn-block btn-mob-margin hidden-md-up" data-dismiss="modal" (click)="onClose()"
+          name="cancelButton">Cancel</button>
+        <button type="button" id="cancelBtn" class="btn btn-secondary hidden-sm-down margin-set-right" data-dismiss="modal" (click)="onClose()"
+          name="cancelButton">Cancel</button>
+        <button type="button" class="btn btn-primary hidden-sm-down margin-set-left" (click)="onSave()" data-dismiss="modal" name="continueButton">
+          Save
+        </button>
+        <button id='closeAccountSearchModal' type="button" hidden='true' data-dismiss="modal" name="continueButton">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

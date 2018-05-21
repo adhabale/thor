@@ -1,0 +1,42 @@
+<div class="col-md-12 margin-top">
+  <!--Subscription Search Modal-->
+  <div class="modal fade search-modal" id='showGenerateReportModal' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" arialabel="Close">
+            <span ariahidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Save Report</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="row">
+                <div class="col-md-12 p-top-bottom">
+                  <div class="table-responsive addSubTableHeight table-container">
+                    <table id='addSubTable' class="table">
+                      <thead>
+                        <th class='header-add-sub'>
+                          Would you like to save the selected report criteria ?</th>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary margin-set-left" style="margin-right:6px" data-dismiss="modal" name="noButton"
+            (click)="onNo()">No</button>
+          <button type="button" class="btn btn-primary margin-set-right" style="margin-right:6px" data-dismiss="modal" name="yesButton"
+            (click)="onYes()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

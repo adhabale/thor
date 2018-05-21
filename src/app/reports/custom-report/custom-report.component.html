@@ -1,0 +1,188 @@
+<div class="hidden-sm-down">
+  <div class="divClass row bg-software-gray-1 indexing-header">
+    <div class="col-md-12 col-sm-12">
+      <div class="p-1 hidden-sm-down">
+        <h2 class="display-1 left-pad">
+          Custom Report Download</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 margin-top hidden-sm-down">
+    <div class="row">
+      <div class="btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle btn-line-height btn-shift" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Saved Reports
+          <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu btn-shift-dropdown" arialabelledby="btnGroupDrop1">
+          <a href="#" class="dropdown-item highlightHover">1973,1988</a>
+          <a href="#" class="dropdown-item highlightHover"> Asia,1987,1999</a>
+          <a href="#" class="dropdown-item highlightHover">United States,1979</a>
+        </div>
+      </div>
+      <button class="btn btn-primary float-xs-right margin-set-left" (click)="onGenerateReport()">Generate</button>
+      <button class="btn btn-secondary float-xs-right margin-set" (click)="onSaveCriteria()">Save</button>
+      <button class="btn btn-secondary float-xs-right margin-set-right" (click)="onReset()">Reset</button>
+    </div>
+    <div *ngIf="isShowSuccess" class="margin-top">
+      <div class="alert alert-success alert-dismissible fade in divClass-margin" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="isSuccess=!saveSuccess">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="alert-text hidden-sm-down">Report saved successfully.</span>
+        <span class="alert-text alert-text-mb hidden-md-up">Report saved successfully.</span>
+      </div>
+    </div>
+    <!-- Add/Remove Div-->
+    <div class="col-md-12 hidden-sm-down">
+        <div class="margin-left-p hidden-sm-down">
+          <p style="font-size:12px;">
+            <span>Choose up to 12 fields to include in the Custom Report.</span>
+            <br>
+            <span> For multiple values, select the first value then hold the control key down while selecting additional values.</span>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="availableFields">Available Fields</label>
+            <select multiple class="form-control" [(ngModel)]="availableReportsSelected" size='10' (ngModelChange)="onChangeState()">
+              <option *ngFor="let report of availableReportList" [value]="report.Id">{{report.ReportField}}</option>
+            </select>
+          </div>
+        </div>
+        <div>
+        </div>
+        <div class="col-md-2">
+          <a *ngIf="availableReportsSelected.length>0 && newReportsListCount<13">
+            <img src="./assets/images/ico_arrow_right_01.svg" width="40" height="30" class="d-inline-block" name="addReportsNameButton"
+              class="addButton-cls" (click)="addReports()"> </a>
+          <a *ngIf="availableReportsSelected.length==0">
+            <img src="./assets/images/ico_arrow_right_off_01.svg" width="40" height="30" class="d-inline-block" name="addReportsNameButton"
+              class="addButton-cls" (click)="addReports()"> </a>
+          <a *ngIf="newReportsListCount>12" class="not-allowed">
+            <img src="./assets/images/ico_arrow_right_off_01.svg" width="40" height="30" class="d-inline-block" name="addReportsNameButton"
+              class="addButton-cls" data-toggle="tooltip" data-placement="top" title="You can add upto 12 reporting fields in one custom Report"> </a>
+          <a *ngIf="selectedReportsList.length>0">
+            <img src="./assets/images/ico_arrow_left_01.svg" width="40" height="30" class="d-inline-block" name="removeReportsNameButton"
+              class="removeButton-cls" (click)="removeReports()"> </a>
+          <a *ngIf="selectedReportsList.length==0" class="not-allowed">
+            <img src="./assets/images/ico_arrow_left_off_01.svg" width="40" height="30" class="d-inline-block" name="removeReportsNameButton"
+              class="removeButton-cls" (click)="removeReports()"> </a>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="selectedFields">Selected Fields ({{selectedReportsList.length}})</label>
+            <select multiple class="form-control" [(ngModel)]="removeSelectedAccounts" size='10'  id="a">
+              <option *ngFor="let account of selectedReportsList" [value]="account.Id">{{account.ReportField}} </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div>
+            <input type="button" value="Move Up" class="btn btn-secondary margin-top-moveUp moveUp-btn-width">
+            <input type="button" value="Move Down" class="btn btn-secondary margin-top-moveDown moveUp-btn-width">
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+ <!-- Mobile Div for buttons -->
+ <div class="hidden-md-up">
+    <div class="divClass row bg-software-gray-1 indexing-header">
+      <div class="col-md-12 col-sm-12">
+        <div class="p-1-mob hidden-md-up">
+          <h2 class="display-3 left-pad">
+            Custom Report Download</h2>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="btn-group btn-mob-width btn-margins" role="group">
+        <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle btn-line-height btn-shift" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Saved Reports
+          <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu btn-shift-dropdown" arialabelledby="btnGroupDrop1">
+          <a href="#" class="dropdown-item highlightHover">1973,1988</a>
+          <a href="#" class="dropdown-item highlightHover"> Asia,1987,1999</a>
+          <a href="#" class="dropdown-item highlightHover">United States,1979</a>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isShowSuccess" class="success-mob">
+      <div class="alert alert-success alert-dismissible fade in divClass-margin" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="isSuccess=!saveSuccess">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span class="alert-text hidden-sm-down">Report saved successfully.</span>
+        <span class="alert-text alert-text-mb hidden-md-up">Report saved successfully.</span>
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-secondary btn-mob-width" (click)="onReset()">Reset</button>
+    </div>
+    <div>
+      <button class="btn btn-secondary btn-mob-width" (click)="onSaveCriteria()">Save</button>
+    </div>
+    <div>
+      <p style="font-size:14px;">
+        <span>Choose up to 12 fields to include in the Custom Report.</span>
+      </p>
+    </div>
+    <div class="form-group">
+        <label for="availableFields">Available Fields</label>
+        <select multiple class="form-control" [(ngModel)]="availableReportsSelected" size='10' (ngModelChange)="onChangeState()">
+          <option *ngFor="let report of availableReportList" [value]="report.Id">{{report.ReportField}}</option>
+        </select>
+      </div>
+    <div class="col-md-2">
+        <a *ngIf="availableReportsSelected.length>0 && newReportsListCount<13">
+          <img src="./assets/images/ico_arrow_down_01.svg" width="40" height="30" class="d-inline-block" name="addReportsNameButton"
+            class="addButton-cls shift-mob-add" (click)="addReports()"> </a>
+        <a *ngIf="availableReportsSelected.length==0">
+          <img src="./assets/images/ico_arrow_down_off_01.svg" width="40" height="30" class="d-inline-block" name="addReportsNameButton"
+            class="addButton-cls shift-mob-add" (click)="addReports()"> </a>
+        <a *ngIf="newReportsListCount>12" class="not-allowed">
+          <img src="./assets/images/ico_arrow_down_off_01.svg" width="40" height="30" class="d-inline-block" name="addReportsNameButton"
+            class="addButton-cls shift-mob-add" data-toggle="tooltip" data-placement="top" title="You can add upto 12 reporting fields in one custom Report"> </a>
+        <a *ngIf="selectedReportsList.length>0">
+          <img src="./assets/images/ico_arrow_up_01.svg" width="40" height="30" class="d-inline-block" name="removeReportsNameButton"
+            class="removeButton-cls shift-mob-remove" (click)="removeReports()"> </a>
+        <a *ngIf="selectedReportsList.length==0" class="not-allowed">
+          <img src="./assets/images/ico_arrow_up_off_01.svg" width="40" height="30" class="d-inline-block" name="removeReportsNameButton"
+            class="removeButton-cls shift-mob-remove" (click)="removeReports()"> </a>
+      </div>
+      <div class="form-group">
+          <label for="selectedFields">Selected Fields ({{selectedReportsList.length}})</label>
+          <select multiple class="form-control" [(ngModel)]="removeSelectedAccounts" size='10'  id="b">
+            <option *ngFor="let account of selectedReportsList" [value]="account.Id">{{account.ReportField}} </option>
+          </select>
+        </div>
+    <div class="row">
+      <div class="col-sm-6 col-xs-6">
+        <input type="button" value="Move Up" class="btn btn-secondary btn-mob-width">
+      </div>
+      <div class="col-sm-6 col-xs-6">
+        <input type="button" value="Move Down" class="btn btn-secondary btn-mob-width">
+      </div>
+    </div>
+  
+    <button class="btn btn-primary btn-mob-width" (click)="openSearchModal()">Generate</button>
+  
+  </div>
+  <!-- Mobile Div End -->
+
+<!--Hidden Button For SearchModal-->
+<div class="col-md-12 col-sm-12" style="display:none;">
+  <button type="button" id='reportSearchModalBtn' class="btn btn-primary" data-toggle="modal" data-target="#showGenerateReportModal">Open Generate Modal</button>
+</div>
+<!--Hidden Button For SaveModal-->
+<div class="col-md-12 col-sm-12" style="display:none;">
+  <button type="button" id='saveCriteriaModalBtn' class="btn btn-primary" data-toggle="modal" data-target="#showSaveCriteriaModal">Open Save Criteria Modal</button>
+</div>
+<!-- Generate Report Modal -->
+<generate-report (onYesEvent)="onSaveCriteria()" (onNoEvent)="openReportsPage()"></generate-report>
+<!-- Save Report Modal -->
+<save-report (onYesEvent)="onSuccessfulSave()"></save-report>

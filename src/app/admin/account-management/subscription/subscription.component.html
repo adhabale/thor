@@ -1,0 +1,385 @@
+<!-- <div style="margin-bottom:60px">
+<app-subscription-switcher></app-subscription-switcher>
+</div> -->
+
+<!-- Subscription Desktop -->
+<div class="row switcher-div hidden-sm-down">
+    <div class="subscription-switcher">
+        <div class="lookup">
+            <div class="lookup-container">
+                <div style="margin-left:30px;">
+                    <input type="text" class="form-control lookup-input switcher-input" required name="searchText" autofocus [(ngModel)]='searchValue'
+                        placeholder="Search Subscription">
+                    <span>
+                        <button type="button" class="btn btn-secondary hidden-sm-down float-xs-right margin-set btn-switcher" (click)='reset()'>Reset</button>
+                    </span>
+                    <span>
+                        <button type="button" [disabled]='searchValue.length==0' class="btn btn-primary hidden-sm-down float-xs-right btn-switcher margin-set-right"
+                            (click)='searchSubscriptions()'>Search</button>
+                    </span>
+                </div>
+            </div>
+            <div class="lookup-results-container">
+                <div  class="add-new-subscription" (click)="onAddSubscription()">
+                    <span class="new-sub-link">
+                        <i class="fa fa-plus-circle"> </i>&nbsp; Add New Subscription
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Subscription Desktop End -->
+<!-- Subscription Mobile -->
+<div class="row switcher-div hidden-md-up">
+    <div class="subscription-switcher">
+        <div class="lookup">
+            <div class="lookup-container">
+                <div class="col-sm-12">
+                    <input type="text" class="form-control lookup-input switcher-input" required name="searchText" autofocus [(ngModel)]='searchValue'
+                        placeholder="Search Subscription">
+                </div>
+                <div class="col-sm-12">
+                    <button type="button" [disabled]='searchValue.length==0' class="btn btn-primary btn-mob btn-switcher" (click)='searchSubscriptions()'>Search</button>
+                    <button type="button" class="btn btn-secondary btn-mob btn-switcher" (click)='reset()'>Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row switcher-div hidden-md-up">
+    <div class="subscription-switcher">
+        <div class="lookup">
+            <div class="lookup-results-container">
+                <div class="add-new-subscription" (click)="onAddSubscription()">
+                    <span class="new-sub-link">
+                        <i class="fa fa-plus-circle"> </i>&nbsp; Add New Subscription
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Subscription Mobile End -->
+<div class="row bg-software-gray-1">
+    <div class="col-md-12 col-sm-12" *ngIf='searchView'>
+        <!-- <div class="p-11 hidden-sm-down" *ngIf="subscriptionName">
+            <h3 class="display-1 left-pad bottom-pad">
+                <a class="no-cursor">&nbsp; &nbsp;{{subscriptionName}}</a>
+            </h3>
+
+        </div>
+        <div class="p-11 hidden-md-up" *ngIf="subscriptionName">
+            <h3 class="display-1 left-pad bottom-pad">
+                <a class="no-cursor"> &nbsp; &nbsp; {{subscriptionName}}
+                 </a>
+            </h3>
+        </div> -->
+    </div>
+</div>
+<div class="row bg-software-gray-1">
+    <div class="col-md-12 col-sm-12" *ngIf='!searchView'>
+        <div class="p-11 hidden-sm-down">
+            <h2 class="display-1 left-pad reduce-bottom">
+                <div class="row">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">
+                            <a (click)='changeHeaderToTextField()' style="margin-left:10px;">
+                                <!-- <img src="../../../../assets/images/search-magnifier.PNG" width="50px" height="50px"> -->
+                            </a>
+                        </span>
+                        <!-- <input type="text" class="form-control" style="border-bottom-width: 0px;" [ngModel]='searchValue' (input)="onSearchChange($event.target.value)"
+                            autofocus required name="searchText" placeholder="Search Subscription"> -->
+                        <input type="text" class="form-control" style="border-bottom-width: 0px;" [ngModel]='searchValue' name="searchText" placeholder="Search Subscription">
+                    </div>
+                </div>
+            </h2>
+        </div>
+        <div class="p-11 hidden-md-up">
+            <h2 class="display-3 left-pad reduce-bottom">
+                <div class="row">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">
+                            <a (click)='changeHeaderToTextField()'>
+                                <img src="../../../../assets/images/search-magnifier.PNG" width="50px" height="50px">
+                            </a>
+                        </span>
+                        <input type="text" class="form-control" [ngModel]='searchValue' (input)="onSearchChange($event.target.value)" autofocus required
+                            name="searchText" placeholder="Search Subscription">
+                    </div>
+                    <!-- <div class="col-md-1 col-sm-1 col-xs-1">
+                        <a (click)="changeTextToHeaderField()">
+                            <img src="../../../../assets/images/search-magnifier.PNG" width="50px" height="50px">
+                        </a>
+                    </div>
+                    <div class="col-md-11 col-sm-11 col-xs-11">
+                        <input type="text" class="form-control" [ngModel]='searchValue' (input)="onSearchChange($event.target.value)" autofocus required
+                            name="searchText" placeholder="Search Subscription">
+                    </div> -->
+                </div>
+            </h2>
+        </div>
+    </div>
+</div>
+<!-- <div class="row hidden-sm-down sub-add-btn" *ngIf='!searchView'>
+    <div class="col-md-12 col-sm-12">
+        <div class="">
+            <h2 class="display-3 left-pad">
+                <div class="row">
+                    <div class="col-md-11 col-sm-11 col-xs-11 pad-left">
+                        <a (click)='onAddSubscription()'>
+                            <i class="fa fa-plus-circle"> &nbsp; Add New Subscription</i>
+                        </a>
+                    </div>
+                </div>
+            </h2>
+        </div>
+    </div>
+</div>
+<div class="row hidden-md-up sub-add-btn-mob" *ngIf='!searchView'>
+    <div class="col-md-12 col-sm-12">
+        <div class="">
+            <h2 class="display-3 left-pad">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 pad-left">
+                        <a (click)='onAddSubscription()'>
+                            <i class="fa fa-plus-circle"> &nbsp; Add New Subscription</i>
+                        </a>
+                    </div>
+                </div>
+            </h2>
+        </div>
+    </div>
+</div> -->
+<!-- Subscription Desktop Routing-->
+<div class="row hidden-sm-down" *ngIf="showRouting">
+    <div class="col-md-12 col-sm-12">
+        <div class="col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 sub-top-margin">
+                    <div class="nav-container">
+                        <ul class="nav nav-horizontal nav-horizontal-light nav-pills">
+                            <li class="nav-item">
+                                <a id="1" class="nav-link" routerLink="clientInfo" routerLinkActive="active">Client Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="2" class="nav-link" routerLink="energyLossesInfo" routerLinkActive="active">Energy Losses Information</a>
+                            </li>
+                            <li class="nav-item" *ngIf='!addView'>
+                                <a id="3" class="nav-link" routerLink="userMaintenance" routerLinkActive="active" (click)="openTab();">User Maintenance</a>
+                            </li>
+                            <!--<li class="nav-item">
+                                <a id="4" class="nav-link disabled" routerLink="validateUser" routerLinkActive="active">Validate User Access</a>
+                            </li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Subscription Mobile Routing-->
+<div class="row hidden-md-up" *ngIf="showRouting">
+    <div class="col-md-12 col-sm-12">
+        <div class="col-md-12 col-sm-12 p-top-bottom2" *ngIf='!addView'>
+            <select class="form-control" [ngModel]='currentRoute' (ngModelChange)="navigateSubscription($event)">
+                <option value="clientInfo">Client Information</option>
+                <option value="energyLossesInfo">Energy Losses Information</option>
+                <option value="userMaintenance">User Maintenance</option>
+                <!--<option value="clientInfo">Validate User Access</option>-->
+            </select>
+        </div>
+        <div class="col-md-12 col-sm-12 p-top-bottom2" *ngIf='addView'>
+            <select class="form-control" [ngModel]='currentRoute' (ngModelChange)="navigateSubscription($event)">
+                <option value="clientInfo">Client Information</option>
+                <option value="energyLossesInfo">Energy Losses Information</option>
+                <!--<option value="userMaintenance">User Maintenance</option>-->
+                <!--<option value="clientInfo">Validate User Access</option>-->
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Subscription Routing Area-->
+<div class="row" *ngIf="showRouting">
+    <div class="col-md-12 col-sm-12">
+        <div class="col-md-12 col-sm-12">
+            <div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Hidden Button For Modal-->
+<div class="col-md-12 col-sm-12 btn-invisible">
+    <button type="button" id='searchSubModal' class="btn btn-primary" data-toggle="modal" data-target="#showSearchSubscriptionModal2">Open Search Subscription</button>
+    <button type="button" id='searchAddSubModal' class="btn btn-primary" data-toggle="modal" data-target="#showAddSubscriptionModal">Open Add New Subscription</button>
+</div>
+
+
+<!--Subscription Search Modal-->
+<div class="modal fade user-search-result" id='showSearchSubscriptionModal' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arialabel="Close">
+                    <span ariahidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Search Subscription</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-width" required name="searchText" autofocus [(ngModel)]='searchValue' placeholder="Search Subscription">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <button type="button" class="btn btn-secondary hidden-sm-down btn-margin-left pull-right" (click)='reset()'>Reset</button>
+                                <button type="button" [disabled]='searchValue.length==0' class="btn btn-primary hidden-sm-down btn-margin-right pull-right"
+                                    (click)='searchSubscriptions()'>Search</button>
+                                <button type="button" [disabled]='searchValue.length==0' class="btn btn-primary hidden-md-up btn-block" (click)='searchSubscriptions()'>Search</button>
+                                <button type="button" class="btn btn-secondary hidden-md-up btn-block" (click)='reset()'>Reset</button>
+                            </div>
+                            <div class="col-md-12" *ngIf='isSearchOn'>
+                                <div class="table-responsive addSubTableHeight table-container">
+                                    <table id='addSubTable' class="table">
+                                        <thead>
+                                            <th class='header-add-sub'>Subscription Name</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let sub of searchSubscriptionList; let i = index" (click)="setSearchSubClickedRow(i)" [class.active]="i == selectedRow">
+                                                <td class="pointer ex1">{{sub.Name}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]='subSelected' class="btn btn-primary btn-block hidden-md-up" (click)="continueSelectedSubscription()"
+                    data-dismiss="modal" name="continueButton">Continue</button>
+                <button type="button" class="btn btn-secondary btn-block hidden-md-up" data-dismiss="modal" name="cancelButton">Cancel</button>
+                <button type="button" class="btn btn-secondary hidden-sm-down margin-set-right" data-dismiss="modal" name="cancelButton">Cancel</button>
+                <button type="button" [disabled]='subSelected' class="btn btn-primary hidden-sm-down margin-set-left" (click)="continueSelectedSubscription()"
+                    data-dismiss="modal" name="continueButton">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Subscription Search Modal-->
+<div class="modal fade user-search-result2" id='showSearchSubscriptionModal2' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arialabel="Close">
+                    <span ariahidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Select Subscription</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12" *ngIf='isSearchOn'>
+                                <div class="table-responsive addSubTableHeight table-container">
+                                    <table id='addSubTable' class="table">
+                                        <thead>
+                                            <th class='header-add-sub'>Subscription Name</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let sub of searchSubscriptionList; let i = index" (click)="setSearchSubClickedRow(i)" [class.active]="i == selectedRow">
+                                                <td class="pointer ex1">{{sub.Name}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]='subSelected' class="btn btn-primary btn-block hidden-md-up" (click)="continueSelectedSubscription()"
+                    data-dismiss="modal" name="continueButton">Continue</button>
+                <button type="button" class="btn btn-secondary btn-block hidden-md-up" data-dismiss="modal" name="cancelButton">Cancel</button>
+                <button type="button" class="btn btn-secondary hidden-sm-down margin-set-right" data-dismiss="modal" name="cancelButton">Cancel</button>
+                <button type="button" [disabled]='subSelected' class="btn btn-primary hidden-sm-down margin-set-left" (click)="continueSelectedSubscription()"
+                    data-dismiss="modal" name="continueButton">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Add New Subscription-->
+<div class="modal fade user-search-result" id='showAddSubscriptionModal' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arialabel="Close">
+                    <span ariahidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Add New Subscription</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-width" required name="searchText" autofocus [(ngModel)]='searchValue' placeholder="Search Subscription">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <button type="button" class="btn btn-secondary hidden-sm-down btn-margin-left pull-right" (click)='reset()'>Reset</button>
+                                <button type="button" [disabled]='searchValue.length==0' class="btn btn-primary hidden-sm-down btn-margin-right pull-right"
+                                    (click)='searchAddSubscriptions()'>Search</button>
+                                <button type="button" [disabled]='searchValue.length==0' class="btn btn-primary hidden-md-up btn-block" (click)='searchAddSubscriptions()'>Search</button>
+                                <button type="button" class="btn btn-secondary hidden-md-up btn-block" (click)='reset()'>Reset</button>
+                            </div>
+                            <div class="col-md-12" *ngIf='isAddSearchOn'>
+                                <div class="table-responsive addSubTableHeight table-container">
+                                    <table id='addSubTable' class="table">
+                                        <thead>
+                                            <th class='header-add-sub'>Subscription Name</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let sub of addSubscriptionList; let i = index" (click)="setAddSubClickedRow(i)" [class.active]="i == selectedRow">
+                                                <td class="pointer ex1">{{sub.Name}}
+                                                    
+                                                        <ol class="pointer ex1 ul-mod" >
+                                                            <li *ngFor="let s of sub.Types">&#x2022; {{s}}&nbsp;</li>
+                                                        </ol>
+                                                    
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]='subSelected' class="btn btn-primary btn-block hidden-md-up" (click)="continueSelectedAddSubscription()"
+                    data-dismiss="modal" name="continueButton">Continue</button>
+                <button type="button" class="btn btn-secondary btn-block hidden-md-up" data-dismiss="modal" name="cancelButton">Cancel</button>
+                <button type="button" class="btn btn-secondary hidden-sm-down margin-set-right" data-dismiss="modal" name="cancelButton">Cancel</button>
+                <button type="button" [disabled]='subSelected' class="btn btn-primary hidden-sm-down margin-set-left" (click)="continueSelectedAddSubscription()"
+                    data-dismiss="modal" name="continueButton">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>

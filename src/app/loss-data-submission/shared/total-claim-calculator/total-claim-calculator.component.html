@@ -1,0 +1,59 @@
+<div class="card card-block bg-software-gray-1">
+    <h4 class="card-title display-4">Calculate Total Claim</h4>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th width="45%"> PD/S&P Claim:
+                        <span style='color:red;'> *</span>
+                        <br> (100% gross, ground-up)
+                    </th>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control align-right" aria-describedby="basic-addon1" [(ngModel)]="pd" id="pd" (change)="onChange()"
+                            (focusout)="pd = formatInput(pd)" allowDecimalNumber>
+                            <span class="input-group-addon" id="basic-addon1">$</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>OEE Claim:
+                        <span style='color:red;'> *</span>
+                        <br> (100% gross, ground-up)
+                    </th>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control align-right" aria-describedby="basic-addon1" [(ngModel)]="oee" id="oee" (change)="onChange()"
+                            (focusout)="oee = formatInput(oee)" allowDecimalNumber>
+                            <span class="input-group-addon" id="basic-addon1">$</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>BI Claim:
+                        <span style='color:red;'> *</span>
+                        <br> (Please clarify basis of costs)
+                    </th>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control align-right" aria-describedby="basic-addon1" [(ngModel)]="bi" id="bi" (change)="onChange()"
+                            (focusout)="bi = formatInput(bi)" allowDecimalNumber>
+                            <span class="input-group-addon" id="basic-addon1">$</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Total Claim:
+                    </th>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control align-right" aria-describedby="basic-addon1" id="total" [(ngModel)]="total"
+                            (focusout)="total = formatInput(total)" allowDecimalNumber>
+                            <span class="input-group-addon" id="basic-addon1">$</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

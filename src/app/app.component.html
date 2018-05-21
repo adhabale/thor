@@ -1,0 +1,248 @@
+<!-- Masshead Desktop -->
+<nav class="navbar navbar-light navbar-sticky-top bg-software-gray-1 hidden-sm-down">
+    <a class="navbar-brand" href="#">
+        <img src="./assets/images/oneplaceHeader.PNG" class="d-inline-block align-top" alt="WTW" width="100%">
+        <!-- <h4>Risk Intelligence Energy Losses</h4> -->
+    </a>
+</nav>
+
+<!-- Masshead Mobile -->
+<nav class="navbar navbar-light navbar-sticky-top  bg-software-gray-1 mobile-nav hidden-md-up ">
+    <a class="navbar-brand" href="#">
+        <img src="./assets/images/oneplaceHeader-mob.PNG" class="d-inline-block align-top" alt="WTW" width="100%">
+    </a>
+</nav>
+
+
+<div class="container-fluid">
+    <div class="row display-flex">
+        <!-- Mobile Navigation -->
+        <div class="col-md-12 col-sm-12 hidden-md-up">
+            <div class="row">
+                <div id="btn-menu" class="navbar-dark">
+                    <button id="menu-btn" (click)="menuMobileToggle()" class="navbar-toggler closedtime" type="button" data-toggle="collapse"
+                        data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="nav-mobile-text hidden-md-up">Menu</span>
+                    </button>
+                </div>
+                <div class="col-md-12 col-sm-12 pp-2">
+                    <div class="collapse nav-mobile-collapse mobile-nav" id="exCollapsingNavbar">
+                        <div class="bg-white pp-1">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li class="nav-item li-pad">
+                                    <a class="nav-link li-a-mobile-padding" routerLink="home" routerLinkActive="active">
+                                        <span>Home</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item li-pad">
+                                    <a class="nav-link li-a-mobile-padding" routerLink="dashboard" routerLinkActive="active">
+                                        <span>Loss Data Submission Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item li-pad">
+                                    <a class="nav-link li-a-mobile-padding" routerLink="search" routerLinkActive="active">
+                                        <span>Search</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item li-pad">
+                                    <a class="nav-link li-a-mobile-padding" routerLink="overallLosses" routerLinkActive="active">
+                                        <span>Overall Losses</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item li-pad">
+                                    <a class="nav-link li-a-mobile-padding" routerLink="oee" routerLinkActive="active">
+                                        <span>OEE Losses</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item li-pad">
+                                    <a class="nav-link li-a-mobile-padding" routerLink="customReports" routerLinkActive="active">
+                                        <span>Custom Report Download</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item li-pad">
+                                    <a class="nav-link li-a-mobile-padding" routerLink="loss-data-submission" routerLinkActive="active">
+                                        <span>Loss Data Submission</span>
+                                    </a>
+                                </li>
+                                <!--<li class="nav-item li-pad">
+                                    <a class="nav-link li-a-mobile-padding" routerLinkActive="active">
+                                        <span>Admin</span>
+                                    </a>
+                                </li>-->
+                                <li class="nav-item li-pad" (click)="smedropdownstatus()">
+                                    <a class="nav-link  appdrop dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
+                                        SME
+                                        <span class="caret"></span>
+                                    </a>
+                                </li>
+                                <ul class="no-padding" [hidden]="!smedropdownOpen">
+                                    <li class="nav-item">
+                                        <a class="nav-link  dropdown-text-mobile" routerLink="validate-loss-data-submission" routerLinkActive="active">
+                                            <span>Validate Loss Data Submission</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link  dropdown-text-mobile" routerLink="elData" routerLinkActive="active">
+                                            <span>EL Data Management</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <li class="nav-item li-pad" (click)="dropdownstatus()">
+                                    <a class="nav-link  appdrop dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
+                                        Admin
+                                        <span class="caret"></span>
+                                    </a>
+                                </li>
+
+                                <ul class="no-padding" [hidden]="!dropdownOpen">
+                                    <li class="nav-item">
+                                        <a class="nav-link  dropdown-text-mobile" routerLink="subscription" routerLinkActive="active">
+                                            <span>Subscription</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link  dropdown-text-mobile" routerLink="announcement" routerLinkActive="active">
+                                            <span>Announcements</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link  dropdown-text-mobile" routerLink="referenceDocuments" routerLinkActive="active">
+                                            <span>Reference Documents</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link  dropdown-text-mobile" routerLink="termsOfUse" routerLinkActive="active">
+                                            <span>Terms of Use</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link  dropdown-text-mobile" routerLink="activity-log" routerLinkActive="active">
+                                            <span>Activity Log</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <li>
+                                    <hr>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -->
+        <div class="col-md-1 col-sm-2 hidden-sm-down app-navbar-padding">
+            <!-- Navigation Desktop -->
+            <div class="row">
+                <div class="nav-w-submenu-container">
+                    <ul class="nav nav-vertical nav-vertical-dark nav-pills nav-stacked sidenav-priority">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="home" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/home.svg" alt="">
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="dashboard" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Loss Data Submission Dashboard-03.png" alt="">
+                                <span>Loss Data Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="search" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/search.svg" alt="">
+                                <span>Search</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <img class="dark-nav-img" src="./assets/images/overall-losses.svg" alt="">
+                                <span>Overall Losses</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <img class="dark-nav-img" src="./assets/images/oee-losses.svg" alt="">
+                                <span>OEE Losses</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="customReports" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/report.svg" alt="">
+                                <span>Custom Report Download</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="loss-data-submission" routerLinkActive="active">
+                                <img class="dark-nav-img" src="./assets/images/Loss Data Submission-01.png" alt="">
+                                <span>Loss Data Submission</span>
+                            </a>
+                        </li>
+                        <li id="smeElem" #smeElem class="nav-item admin-nav" data-for="sme-submenu">
+                            <a class="nav-link">
+                                <img class="dark-nav-img" src="./assets/images/Fill 20.svg" alt="">
+                                <span>SME</span>
+                            </a>
+                        </li>
+                        
+                        <li id="adminElem" #adminElem class="nav-item admin-nav" data-for="admin-submenu">
+                            <a class="nav-link">
+                                <img class="dark-nav-img" src="./assets/images/admin.svg" alt="">
+                                <span>Admin</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul id="activeSme" #activeSme class="nav-vertical-dark nav-vertical-submenu nav-vertical-submenu-sme sme-submenu">
+                        <li>
+                            <a routerLink="validate-loss-data-submission" routerLinkActive="active">
+                                <span>Validate Loss Data Submission</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="elData" routerLinkActive="active">
+                                <span>EL Data Management</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul id="activeAdmin" #activeAdmin class="nav-vertical-dark nav-vertical-submenu admin-submenu">
+                        <li>
+                            <a routerLink="subscription" routerLinkActive="active">
+                                <span>Subscription</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="announcement" routerLinkActive="active">
+                                <span>Announcements</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="referenceDocuments" routerLinkActive="active">
+                                <span>Reference Documents</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="termsOfUse" routerLinkActive="active">
+                                <span>Terms of Use</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a routerLink="activity-log" routerLinkActive="active">
+                                <span>Activity Log</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-11 col-sm-12">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-footer></app-footer>

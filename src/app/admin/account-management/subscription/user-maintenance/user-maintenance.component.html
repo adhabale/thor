@@ -1,0 +1,95 @@
+<!-- User Maintenance Routing-->
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="p-top-bottom">
+
+            <!-- WTW Software Gray background -->
+            <div class="card card-tabs bg-softwaregray-1">
+                <div class="card-header" *ngIf='!isAddViewOn'>
+                    <ul class="nav nav-tabs card-header-tabs float-xs-left">
+                        <li class="nav-item">
+                            <a id="1" class="nav-link" routerLink="existingUsers" routerLinkActive="active">Existing Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="2" class="nav-link" routerLink="addNewUsers" routerLinkActive="active">Add New Users</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-header" *ngIf='isAddViewOn'>
+                    <ul class="nav nav-tabs card-header-tabs float-xs-left">
+                        <li class="nav-item">
+                            <a id="2" class="nav-link" routerLink="addNewUsers" routerLinkActive="active">Add New Users</a>
+                        </li>
+                        <li class="nav-item" *ngIf='userAdded'>
+                            <a id="1" class="nav-link" routerLink="existingUsers" routerLinkActive="active">Existing Users</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-block">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12" style="margin-top:20px;">
+    <hr>
+</div>
+<div class="hidden-md-up">
+    <div>
+        <button type="button" [hidden]='!showAddClientSubBtn' class="btn btn-primary btn-block" data-toggle="modal" data-target=".success-sub" data-backdrop="static" data-keyboard="false" (click)='onActivationClick()' name="addSubButton">Activate Client Subscription</button>
+        <button type="button" class="btn btn-secondary btn-block" (click)='navigateToEnergyLossesInfo()' name="backButton">Back</button>
+    </div>
+</div>
+<div class="hidden-sm-down">
+    <div>
+        <button type="button" class="btn btn-secondary float-xs-left" (click)='navigateToEnergyLossesInfo()' name="backButton">Back</button>
+        <button type="button" [hidden]='!showAddClientSubBtn' (click)='onActivationClick()' class="btn btn-primary float-xs-right" data-toggle="modal" data-target=".success-sub" data-backdrop="static" data-keyboard="false" name="addSubButton">Activate Client Subscription</button>
+    </div>
+</div>
+
+<!--Subscription success message-->
+
+<div id='subActive' class="modal fade success-sub" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" arialabel="Close">
+          <span ariahidden="true">&times;</span>
+        </button>
+                <h4 class="modal-title">Subscription Message</h4>
+            </div>
+            <div class="modal-body">
+                Subscription {{subscriptionName}} successfully activated.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary hidden-sm-down" data-dismiss="modal" (click)='navigateToHomePage()' name="EndButton">Ok</button>
+                <button type="button" class="btn btn-primary btn-block hidden-md-up" data-dismiss="modal" (click)='navigateToHomePage()' name="EndButton">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- User Maintenance Routing-->
+<!--<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="col-md-12 col-sm-12">
+            <div>
+
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<!--<div class="nav-container">
+                        <ul class="nav nav-horizontal nav-horizontal-light nav-pills">
+                            <li class="nav-item">
+                                <a id="1" class="nav-link" routerLink="addNewUsers" routerLinkActive="active">Add New Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="2" class="nav-link" routerLink="existingUsers" routerLinkActive="active">Existing Users</a>
+                            </li>
+                        </ul>
+                    </div>-->
